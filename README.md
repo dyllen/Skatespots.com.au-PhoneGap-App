@@ -9,3 +9,8 @@
 In your browser, open the file:
 
     /www/index.html
+
+This project uses the PhoneGap CLI for development.
+After installing the PhoneGap CLI Use:
+
+    phonegap local run ios
