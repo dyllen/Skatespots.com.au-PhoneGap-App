@@ -1,0 +1,17 @@
+<ion-view title="Favourites">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+   <button ng-show="loading" class="button button-full button-light">
+      <i class="icon ion-loading-c"></i>
+    </button>
+    <ion-list>
+      <a ng-repeat="Park in favourites" class="item item-thumbnail-left" href="#/app/playlists/{{Park.id}}">
+        <img ng-src="{{Park.thumbnail}}">
+        <h2>{{Park.title}}</h2>
+        <p>{{Park.address}}</p>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

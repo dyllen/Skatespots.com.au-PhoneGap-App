@@ -1,0 +1,505 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"prevent",
+				"preventDefault"
+			],
+			[
+				"no",
+				"noListings"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"cen",
+				"centerSet"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"fb",
+				"fbResponse"
+			],
+			[
+				"address",
+				"addressFull"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"log",
+				"login"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
+				"terx",
+				"text-decoration"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"inpu",
+				"inputCount"
+			],
+			[
+				"long",
+				"longitude"
+			],
+			[
+				"search",
+				"searchFactory"
+			],
+			[
+				"backg",
+				"background"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"backgrou",
+				"background-size"
+			],
+			[
+				"spotCon",
+				"spotsContent"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
+			"settings":
+			{
+				"buffer_size": 3336,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+			"settings":
+			{
+				"buffer_size": 183,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/index.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/src/android/facebook/res/values/facebookconnect.xml",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/add-form.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/user.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spot-content.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/controllers.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/menu.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/css/style.css",
+		"/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/getlogin.php",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/cdv-plugin-fb-connect.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/facebook-js-sdk.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/www/cdv-plugin-fb-connect.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/cdv-plugin-fb-connect.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/www/facebook-js-sdk.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/www/cdv-plugin-fb-connect.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spots.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/top.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/add.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/css/style.css",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/lib/ionic/css/ionic.css",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/favourites.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/js/app.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/lib/ionic/css copy/ionic.css",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/search copy.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/playlist.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/login.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/parks.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/browse.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/templates/spots.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/facebook-js-sdk.js",
+		"/Users/dylanjones/Documents/Hunger Time/www/js/ionic.cards.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/templates/menu.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/lib/ionic/js/ionic-angular.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/js/controllers.js",
+		"/Users/dylanjones/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/lib/ionic/js/ionic-angular.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/www/lib/ionic/js/ionic-angular.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spinner.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/search.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/home.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/channel.html",
+		"/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/addapp.php",
+		"/Users/dylanjones/Desktop/addapp.php",
+		"/Users/dylanjones/Desktop/gettop.php",
+		"/Users/dylanjones/Desktop/myApp/www/config.xml",
+		"/Users/dylanjones/Desktop/myApp/www/index.html",
+		"/Users/dylanjones/Desktop/myApp/config.xml",
+		"/Users/dylanjones/Desktop/myApp/www/templates/spot-content.html",
+		"/Users/dylanjones/Desktop/myApp/www/js/controllers.js",
+		"/Users/dylanjones/Desktop/myApp/www/js/SocialSharing.js",
+		"/Users/dylanjones/Downloads/ionic-nightly/css/ionic.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/dylanjones/Desktop/Skatespots.com.au",
+			"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates",
+			"/Users/dylanjones/Desktop/Skatespots.com.au",
+			"/Users/dylanjones/Desktop/Skatespots.com.au/www",
+			"/Users/dylanjones/Desktop/Skatespots.com.au",
+			"/Users/dylanjones/Desktop/Skatespots.com.au/www",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fb",
+			"cordova",
+			"userCt",
+			"browser",
+			"swi",
+			"switch",
+			"img-select",
+			"<a",
+			".click()",
+			"touch",
+			".click();",
+			".click",
+			"upload",
+			"async-upload",
+			"QLD",
+			"ACT",
+			"allSpots",
+			"mapCenter",
+			"map =",
+			"map",
+			"maps",
+			"iphone",
+			"playList",
+			"fitbound",
+			"zoom",
+			"btn",
+			"update",
+			"set",
+			"callback",
+			"getspots",
+			"fbResponse",
+			"console",
+			"OnDeviceReady",
+			"mapOpt",
+			"mapOptions",
+			"default",
+			"padding-botto",
+			"toggleParks()",
+			"first-c",
+			"top",
+			"getSpots",
+			"getNearby",
+			"scrollTop",
+			"initMap",
+			"switch",
+			"ionicScrollDelegate",
+			".top(",
+			"getNear",
+			"popup",
+			"geol",
+			"error",
+			"deviceready",
+			"spots",
+			"submit",
+			"map",
+			"addCtr",
+			"add",
+			"submit",
+			"add",
+			"please log",
+			"login",
+			"map",
+			"comment",
+			"https://www.facebook",
+			"marker",
+			"fb",
+			"marker",
+			"angular.",
+			"addClass",
+			"alert",
+			"scope.Spots",
+			"Spots",
+			"state",
+			"currentRefine",
+			"getNear",
+			"scope.userLat",
+			"root",
+			"$scope.userLat",
+			"localhost",
+			"panTo",
+			"position",
+			"center",
+			"set lat ",
+			"watch",
+			"center",
+			"map",
+			"console",
+			"markers",
+			"rootSco",
+			"Nearby",
+			"nearby",
+			"addClass",
+			"cookie",
+			".refine_bar",
+			".map-large",
+			"backgrou",
+			"bac",
+			"comments",
+			"all ",
+			"all",
+			"hide",
+			"show",
+			"currentRefine",
+			"div.list.map-preview",
+			"map-list",
+			"max-width: 85%;",
+			"max-wid",
+			"map-list",
+			"map",
+			"div.list.map-preview",
+			"map",
+			"list",
+			"map",
+			"userLat",
+			"userlatLng",
+			"mapInfo",
+			"nearby",
+			"tiles",
+			"login",
+			"btn",
+			"scope.",
+			".apply",
+			".apple",
+			"nearby",
+			"parse",
+			"height",
+			"parse",
+			"playList"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3336,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								160,
+								133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "skatespots.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

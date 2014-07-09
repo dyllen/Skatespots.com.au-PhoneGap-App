@@ -1,0 +1,72 @@
+<ion-side-menus>
+  <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button class="button-clear"><i class="icon ion-arrow-left-c"></i></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+  <ion-side-menu side="left">
+  <div class="bar bar-header search-header">
+     <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input type="search" placeholder="Search" id="search" disabled="disabled">
+  </label>
+  <button class="button button-clear" ng-click="clearSearch()">
+    <i class="icon ion-close-circled"></i>
+  </button>
+  </div>
+    <ion-content class="has-header">
+    <button ng-show="searchLoading" class="button button-full button-light">
+      <i class="icon ion-loading-c"></i>
+    </button>
+    <div class="list search-results" ng-show="searchResults">
+        <a class="item item-avatar" ng-hide="noResults" nav-clear menu-close ng-repeat="results in searchResults" href="#/app/playlists/{{results.id}}">
+          <div class="preview-img" style="background:url({{results.thumbnail}}); background-size: cover;"></div>
+          <h2 ng-bind-html="results.title"></h2>
+          <p>{{results.address}}, {{results.state}}</p>
+        </a>
+        <p ng-show="noResults" class="noresults">No results</p>
+    </div>
+      <ion-list>
+        <div class="fb_user" ng-show="fbResponse" >
+          <a nav-clear menu-close href="#/app/user/{{fbResponse.id}}">
+          <img class="avatar" ng-show="fbImage" ng-src="{{fbImage}}">
+          <h3>{{fbResponse.name}}</h3>
+        </a>
+        </div>
+        <ion-item nav-clear menu-close href="#/app/top">
+          Top 10 Spots &amp; Parks
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/spots/spot">
+          Spots
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/spots/park">
+          Parks
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/leaderboard">
+          User leaderboard
+        </ion-item>
+        <ion-item nav-clear menu-close ng-show="fbResponse" href="#/app/favourites">
+          Your favourites
+        </ion-item>
+      </ion-list>
+ <button ng-show="signinLoader" class="button button-full button-light sign-loader">
+      Signing in <i class="icon ion-loading-c"></i>
+    </button>
+      <a class="btn_simple btn_signin" ng-click="fbLogin()" ng-hide="fbResponse">Sign in</a>
+      <a class="btn_simple btn_add" href="#/app/add" nav-clear menu-close><i class="ion-ios7-plus-empty"></i>Add a spot or park</a>
+      <!-- <a class="signout" ng-show="fbResponse" ng-click="fbLogOut()">sign out</a> -->
+
+      <div id="fb-root"></div>
+      <div id="data"></div>
+    </ion-content>
+
+    <ion-footer-bar class="menu-footer">
+      <ion-item nav-clear menu-close href="#/app/about">
+        About Us
+      </ion-item>
+  </div>
+</ion-footer-bar>
+  
+  </ion-side-menu>
+</ion-side-menus>

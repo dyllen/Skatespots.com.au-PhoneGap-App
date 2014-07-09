@@ -1,0 +1,57 @@
+<ion-view title="My Spot">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header user_page">
+    <button ng-show="loading" class="button button-full button-light">
+    <i class="icon ion-loading-c"></i>
+  	</button>
+  	<div ng-hide="loading">
+    <div class="list map-preview" ng-show="mapPreview">
+      <a class="item item-avatar" href="#/app/playlists/{{mapPreview.id}}">
+        <div class="preview-img" style="background:url({{mapPreview.thumbnail}}); background-size: cover;"></div>
+        <h2 ng-bind-html="mapPreview.title"></h2>
+        <p>{{mapPreview.address}}</p>
+        <i class="ion-chevron-right"></i>
+      </a>
+  </div>
+    <div data-tap-disabled="true">
+  	   <div id="usermap" style="width:100%; height:250px;"></div>
+     </div>
+  	<div class="padding user_inner">
+  		<h3>{{name}}</h3>
+    	<img ng-show="id" height="100" ng-src="{{userImage}}" class="fb-hero">
+    	<p ng-show="state"><i class="ion-location"></i> {{state}}</p>
+    	<a href="{{website}}" ng-show="website" onclick="window.open(this.href,'_system'); return false;"><i class="ion-earth"></i> {{website}}</a>
+    	<p class="bio">{{bio}}</p>
+    </div>
+    <div ng-show="noListings" class="no-listings">
+    <p>Add a spot or a park to get started</p>
+    <div class="button-bar bar-positive">
+      <a class="button" href="#/app/addform/spot">Add a spot</a>
+      <a class="button" href="#/app/addform/park">Add a park</a>
+    </div>
+    </div>
+    <div class="button-bar bar-light">
+        <div class="button-bar listings">
+          <a class="button" ng-show="Spots" ng-click="toggleSpots()">Spots</a>
+          <a class="button" ng-show="Parks" ng-click="toggleParks()">Parks</a>
+        </div>
+      </div>
+      <div class="list" ng-show="showSpots">
+	    <a ng-repeat="Spots in Spots" class="item item-thumbnail-left" href="#/app/playlists/{{Spots.id}}">
+	      <img ng-src="{{Spots.thumbnail}}">
+	      <h2 ng-bind-html="Spots.title"></h2>
+	      <p>{{Spots.address}}, {{Spots.sub}}, {{Spots.state}}</p>
+	    </a>
+  	</div>
+  	 <div class="list" ng-show="showParks">
+	    <a ng-repeat="Parks in Parks" class="item item-thumbnail-left" href="#/app/playlists/{{Parks.id}}">
+	      <img ng-src="{{Parks.thumbnail}}">
+	      <h2 ng-bind-html="Parks.title"></h2>
+	      <p>{{Parks.address}}, {{Parks.sub}}, {{Parks.state}}</p>
+	    </a>
+  	</div>
+  	</div>
+  </ion-content>
+</ion-view>

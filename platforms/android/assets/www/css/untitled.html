@@ -1,0 +1,101 @@
+<?php
+// Get My Spot user details
+define('WP_USE_THEMES', false);
+require('wp-load.php');
+
+// set header for json mime type
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Content-type: application/json;');
+header('Connection: keep-alive;');
+
+$userID = htmlspecialchars($_GET["userid"]);
+$jsonpost = array();
+$imageArray = array();
+ if ($userID) {
+$spotCount = 0;
+$parkCount = 0;
+  $myquer = mysql_query("SELECT * FROM facebook WHERE fb_id = $userID");
+    while($myrow = mysql_fetch_array($myquer)) {
+      $website = $myrow['website'];
+      $jsonpost["user"] = $myrow['name'];
+      $jsonpost["user-first"] = $myrow['first_name'];
+      $jsonpost["site"] = $myrow['site_username'];
+      $jsonpost["id"] = $userID;
+      $jsonpost["bio"] = $myrow['bio'];
+      $jsonpost["website"] = $website;
+      $jsonpost["badges"] = '';
+      if (substr($website, 0, 7) != 'http://') {
+        if(strlen($website) > 10) {
+          $jsonpost["website"] = 'http://'.$website;
+        }
+      }
+      $jsonpost["state"] = $myrow['state'];
+     }
+  $args = array(
+    'numberposts'     => -1,
+    'offset'          => 0,
+    'category'        => 13,
+    'orderby'         => 'title',
+    'order'           => 'ASC',
+    'meta_key'        => 'fb_id',
+    'meta_value'      => $userID,
+    'post_type'       => 'post',
+    'post_status'     => 'publish'); 
+  $myposts = get_posts( $args );
+  foreach( $myposts as $post ) : setup_postdata($post); 
+
+
+    $attachment_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent = '".$post->ID."' AND post_status = 'inherit' AND post_type='attachment' ORDER BY post_date DESC LIMIT 1");
+    $url = wp_get_attachment_image_src($attachment_id, 'medium');
+
+     $jsonpost["parks"][$parkCount]['id'] = $post->ID;
+     $jsonpost["parks"][$parkCount]['title'] = get_the_title($post->ID);
+     $jsonpost["parks"][$parkCount]['address'] = get_post_meta($post->ID, 'spot_address', true);
+     $jsonpost["parks"][$parkCount]['state'] = get_post_meta($post->ID, 'spot_state', true);
+     $jsonpost["parks"][$parkCount]['sub'] = get_post_meta($post->ID, 'spot_sub', true);
+     $jsonpost["parks"][$parkCount]["thumbnail"] = $url[0];
+  $parkCount++;
+  endforeach;
+
+  $args = array(
+    'numberposts'     => -1,
+    'offset'          => 0,
+    'category'        => 12,
+    'orderby'         => 'title',
+    'order'           => 'ASC',
+    'meta_key'        => 'fb_id',
+    'meta_value'      => $userID,
+    'post_type'       => 'post',
+    'post_status'     => 'publish'); 
+  $myposts = get_posts( $args );
+  foreach( $myposts as $post ) : setup_postdata($post); 
+    $attachment_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_parent = '".$post->ID."' AND post_status = 'inherit' AND post_type='attachment' ORDER BY post_date DESC LIMIT 1");
+    $url = wp_get_attachment_image_src($attachment_id, 'medium');
+     $jsonpost["spots"][$spotCount]['id'] = $post->ID;
+     $jsonpost["spots"][$spotCount]['title'] = get_the_title($post->ID);
+     $jsonpost["spots"][$spotCount]['address'] = get_post_meta($post->ID, 'spot_address', true);
+     $jsonpost["spots"][$spotCount]['state'] = get_post_meta($post->ID, 'spot_state', true);
+     $jsonpost["spots"][$spotCount]['sub'] = get_post_meta($post->ID, 'spot_sub', true);
+     $jsonpost["spots"][$spotCount]["thumbnail"] = $url[0];
+  $spotCount++;
+  endforeach;
+  $jsonpost["spots-count"] = $spotCount;
+  $jsonpost["parks-count"] = $parkCount;
+  if($parkCount > 0) {
+    $jsonpost["badges"]['park-master'] = true;
+  }
+  if($parkCount >= 5) {
+    $jsonpost["badges"]['blowing-up'] = true;
+  }
+  if($spotCount > 0) {
+    $jsonpost["badges"]['spot-finder'] = true;
+  }
+  if($spotCount >= 5) {
+    $jsonpost["badges"]['lighting'] = true;
+  }
+ echo json_encode($jsonpost); 
+ } else{
+   echo'No Facebook ID';
+  }
+?>

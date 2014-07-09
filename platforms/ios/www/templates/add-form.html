@@ -1,0 +1,132 @@
+<ion-view title="Add a {{addType}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+  <form id="form" name="form" method="post" action="http://www.skatespots.com.au/addapp.php" enctype="multipart/form-data">
+  <ion-list class="add-list">
+  <label class="item item-input">
+    <span class="input-label">{{addType}} Name</span>
+    <input type="text" name="post_title" id="post_title">
+  </label>
+  <div class="name-error error button button-block button-assertive padding">Enter a name for this {{addType}}</div>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Description</span>
+    <textarea name="post_content" id="post_content"></textarea>
+  </label>
+  <div class="descrip-error error button button-block button-assertive padding">Enter a description for this {{addType}}</div>
+<label class="item item-input item-stacked-label">
+  <span class="input-label">Location <span id="fullAddress" class="display-address" ng-click="showAlert()"></span>
+</span>
+</label>
+<div data-tap-disabled="true">
+<div id="addMap" style="width:100%; height:200px"></div>
+</div>
+<p class="location-blurb">Not the right address? Click a point on the map to move the marker, or drag it to the location</p>
+  <div class="hidden-fields">
+    <input type="text" name="input-address" id="input-address" value="189 Swanston St">
+    <input type="text" name="input-sub" size="45" id="input-sub" value="Melbourne">
+    <input type="text" name="input-state" id="input-state" value="Victoria">
+    <input type="text" name="input-combo" id="input-combo" value="189 Swanston Street, Melbourne VIC 3000, Australia">
+    <input type="text" id="input-lat" name="input-lat" value="-37.81317440339601">
+    <input type="text" id="input-long" name="input-long" value="144.9652862548828">
+    <input type="text" id="fb_id" name="fb_id" value="{{fbResponse.id}}">
+    <input type="text" name="cat" id="cat" class="postform valid level-0" value="{{typeId}}">
+  </div>
+
+<div class="files">
+<label class="item item-input item-stacked-label">
+    <span class="input-label">Photos</span>
+  </label>
+<div class="photo_select btn_grey" ng-click="addNewfile()"><i class="icon ion-camera"></i><span>add photos</span></div>
+<div class="preview"></div>
+<div class="photos-error error button button-block button-assertive padding">Add at least one photo</div>
+</div>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">What's here</span>
+  </label>
+  <div class="obstacle-error error button button-block button-assertive padding">Select at least on obstacle</div>
+  <div class="row obstacles">
+        <div class="col">
+          <div class="col-demo">
+          <ul class="list">
+          <li class="item item-checkbox">
+            <label class="checkbox" for="banks">
+            <input type="checkbox" name="post_tags[]" value="Banks" id="banks">
+            </label>
+            Banks
+          </li>
+          <li class="item item-checkbox">
+            <label class="checkbox" for="bowls">
+            <input type="checkbox" name="post_tags[]" value="Bowls" id="bowls">
+            </label>
+            Bowls
+          </li>
+          <li class="item item-checkbox">
+            <label class="checkbox" for="drops">
+            <input type="checkbox" name="post_tags[]" value="Drops" id="drops">
+            </label>
+            Drops
+          </li>      
+          <li class="item item-checkbox">
+            <label class="checkbox" for="euros">
+            <input type="checkbox" name="post_tags[]" value="Euros" id="euros">
+            </label>
+            Euros
+          </li> 
+          <li class="item item-checkbox">
+            <label class="checkbox" for="gaps">
+            <input type="checkbox" name="post_tags[]" value="Gaps" id="gaps">
+            </label>
+            Gaps
+          </li>   
+          </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="col-demo">
+          <ul class="list">
+          <li class="item item-checkbox">
+            <label class="checkbox" for="ledges">
+            <input type="checkbox" name="post_tags[]" value="Ledges" id="ledges">
+            </label>
+            Ledges
+          </li>
+          <li class="item item-checkbox">
+            <label class="checkbox" for="rails">
+            <input type="checkbox" name="post_tags[]" value="Rails" id="rails">
+            </label>
+            Rails
+          </li>
+          <li class="item item-checkbox">
+            <label class="checkbox" for="ramps">
+            <input type="checkbox" name="post_tags[]" value="Ramps" id="ramps">
+            </label>
+            Ramps
+          </li>
+          <li class="item item-checkbox">
+            <label class="checkbox" for="stairs">
+            <input type="checkbox" name="post_tags[]" value="Stairs" id="stairs">
+            </label>
+            Stairs
+          </li>                   
+          <li class="item item-checkbox">
+            <label class="checkbox" for="manual">
+            <input type="checkbox" name="post_tags[]" value="Manual" id="manual">
+            </label>
+            Manual Pads
+          </li>
+        </ul>
+          </div>
+        </div>
+      </div>
+      <button ng-show="uploading" class="button button-balanced button-full">
+        <i class="icon ion-loading-c"></i> Uploading {{addType}}
+      </button>
+      <div class="padding">
+        <input class="btn_blue" id="submit" ng-click="submitForm()" type="button" name="submit" value="Submit">
+      </div>
+  </ion-list>
+  </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,116 @@
+<ion-view title="{{spotsContent.title}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header spots-view">
+        <div id="fb-root"></div>
+        <button ng-show="loading" class="button button-full button-light">
+            <i class="icon ion-loading-c"></i>
+        </button>
+        <button ng-show="uploading" class="button button-full button-light">
+            <i class="icon ion-loading-c"></i> Uplading Photo
+        </button>
+        <div class="showbody spot-content" ng-show="showBody">
+         <ion-slide-box class="photo-slide">
+            <ion-slide ng-repeat="image in spotImages">
+                <img ng-click="openModal(image)" ng-src="{{image}}" alt="" title="">
+            </ion-slide>
+        </ion-slide-box>
+            <div class="post_head">
+                <h2>{{spotsContent.title}}<div class="star-rating rating{{spotsContent.ratingRound}}"></div></h2>
+                <span class="spot-description" ng-bind-html="spotsContent.content"></span>
+            </div>
+            <div class="button-bar bar-light spot-actions">
+                <a class="button favourite" data-postid="{{spotsContent.id}}" ng-click="addToFavourites()"><i class="ion-plus"></i><span class="icon-title">Favourite</span></a>
+                <!-- <a class="button" ng-click="showComments()"><i class="ion-chatbox"></i></a> -->
+                <a class="button" target="_blank" ng-click="addImage()" class="img-select"><i class="ion-ios7-camera"></i><span class="icon-title">ADD A PHOTO</span></a>
+                <a class="button" target="_blank" ng-click="openURL(directionsUrl)"><i class="ion-model-s"></i><span class="icon-title">DIRECTIONS</span></a>
+                <a class="button" ng-click="showActionsheet()"><i class="ion-share"></i><span class="icon-title">SHARE</span></a>
+            </div>
+            <div ng-show="facebook" class="list king">
+                <a class="item item-avatar" href="#/app/user/{{facebook.fbID}}">
+                    <img ng-show="fbImage" ng-src="{{fbImage}}">
+                    <h2>King of the {{spotsContent.type}}</h2>
+                    <p>{{facebook.user}}</p>
+                </a>
+            </div>
+            <div class="spot_address_wrap" ng-click="copyAddress()">
+             <div class="spot_address_center">
+                <p class="spot_address"><i class="ion-location map-location"></i><span>{{spotsContent.address}}, {{spotsContent.suburb}}, {{spotsContent.state}}</span></p>
+                </div>
+            </div>
+            <div data-tap-disabled="true">
+            <div id="{{mapName}}" style="width:100%; height:200px;"></div>
+            </div>
+            <div class="nearby nearby-first">
+                <div class="nearby-header">
+                    <h3 class="spot-title">Nearby {{spotsContent.type}}s</h3>  <a href="#/app/addform/{{spotsContent.type}}" class="btn_simple">Add a {{spotsContent.type}}</a>
+                </div>
+                <div class="list more-list">
+                    <ion-slide-box class="nearby-slide">
+                        <ion-slide ng-repeat="Spot in nearby">
+                            <a class="list card" href="#/app/playlists/{{Spot.id}}">
+                                <div class="item item-avatar">
+                                    <h2 ng-bind-html='Spot.title'></h2>
+                                </div>
+                                <div class="spot-img" style="background:url({{Spot.thumbnail}}); background-size:cover; background-position: center center;"></div>
+                                <div class="item item-avatar">
+                                    <p>{{Spot.distance}}<span class="btn_blue">Check it out</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </ion-slide>
+                    </ion-slide-box>
+                </div>
+            </div>
+            <div class="nearby">
+                <div class="nearby-header">
+                    <h3 class="spot-title">Nearby {{sibling}}s</h3>  <a href="#/app/addform/{{sibling}}" class="btn_simple">Add a {{sibling}}</a>
+                </div>
+                <div class="list more-list">
+                    <ion-slide-box class="nearby-slide">
+                        <ion-slide ng-repeat="Spot in nearbySibling">
+                            <a class="list card" href="#/app/playlists/{{Spot.id}}">
+                                <div class="item item-avatar">
+                                    <h2 ng-bind-html='Spot.title'></h2>
+                                </div>
+                                <div class="spot-img" style="background:url({{Spot.thumbnail}}) center center; background-size:cover; background-position: center center;"></div>
+                                <div class="item item-avatar">
+                                    <p>{{Spot.distance}}<span class="btn_blue">Check it out</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </ion-slide>
+                    </ion-slide-box>
+                </div>
+            </div>
+        <form id="addPhoto" enctype="multipart/form-data" action="http://www.skatespots.com.au/appImage.php" method="POST" style="float:left">
+            <div class="file_wrap">
+                <input type="file" id="async-upload" name="async-upload">
+                <input type="text" name="upload-id" id="upload-id" value="{{spotsContent.id}}" />
+                <input type="submit" value="Upload" name="html-upload" class="green_butt more">
+            </div>
+        </form>
+<!--         <div id="comments"> 
+         <a class="btn_gold" ng-click="fbLogin()" >Login to comment</a>
+         <h3>What do you think of this {{spotsContent.type}}?</h3>
+        <button ng-show="loadingComments" class="button button-full button-light">
+            <i class="icon ion-loading-c"></i> loading comments
+        </button>
+        <fb:comments href="{{spotsContent.url}}" numposts="5" width="{{fbWidth}}" colorscheme="light"></fb:comments>
+        </div>
+ -->       
+    </div>
+        <script id="modal.html" type="text/ng-template">
+            <div class="modal" ng-click="closeModal()">
+              <ion-content scroll="false">
+                <div class="close-btn" ng-click="closeModal()">Done</div>
+                <ion-scroll zooming="true" style="width: 100%; height: 100%">
+                <img ng-src="{{data.selected}}" style="display:block; width:100%; max-width:600px; margin:auto"/>
+                </ion-scroll>
+
+              </ion-content>
+            </div>
+          </script>
+    </ion-content>
+</ion-view>

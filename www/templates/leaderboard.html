@@ -1,0 +1,20 @@
+<ion-view title="Leaderboard">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <button ng-show="loading" class="button button-full button-light">
+      <i class="icon ion-loading-c"></i>
+    </button>
+    <ion-list ng-show="users" class="leaderboard">
+    <span class="rank-title">RANK</span>
+    <span class="spots-title">SPOTS ADDED</span>
+       <a ng-repeat="user in users" class="item item-avatar" href="#/app/user/{{user.id}}">
+          <i class="rank-icon">{{user.rank}}</i>
+          <img width="50" height="50" ng-show="user.thumbnail" ng-src="{{user.thumbnail}}">
+          <h2>{{user.name}}</h2>
+          <p>{{user.post_count}}</p>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>
