@@ -16,6 +16,11 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <!-- @TODO
+        all javascript files can be placed at the end of the docments body to stop blocking
+        I believe this is still the case in terms of angular - https://stackoverflow.com/questions/15538125/angularjs-in-head-vs-body
+        may be worth a bit more investigation as I'm not sure how ionic handles it
+    -->
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -35,6 +40,11 @@
     <script src="js/controllers.js"></script>
   </head>
 
+  <!-- @TODO
+    1) rename the angular application to be something more relevant to the project
+    2) move ng-app to the html element (this'll mean you can use angular on the whole document i.e. page titles, descriptions if required)
+    3) prepend all ng-* attributes with data- for consistency and clarity. e.g. data-ng-app="foo", data-ng-if="bar"
+  -->
   <body ng-app="starter">
     <ion-nav-view></ion-nav-view>
   </body>
