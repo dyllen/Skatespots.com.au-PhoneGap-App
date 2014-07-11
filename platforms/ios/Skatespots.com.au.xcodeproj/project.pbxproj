@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -55,6 +54,7 @@
 		91FE39763BB64B69B8687E83 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		D6BFD5C075EA49F483635621 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E940A18216E3450A9D091AF5 /* Social.framework */; };
+		4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +143,8 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Skatespots.com.au/config.xml; sourceTree = "<group>"; };
+		E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppAvailability.m"; path = "com.ohh2ahh.plugins.appavailability/AppAvailability.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		646032A83FAA466FA02FB4A5 /* AppAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppAvailability.h"; path = "com.ohh2ahh.plugins.appavailability/AppAvailability.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,8 @@
 				AFFD46D1076E409CB3C2A2FB /* CDVDevice.h */,
 				5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */,
 				E1C3A394122A431FB9B2A768 /* CDVStatusBar.h */,
+				E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */,
+				646032A83FAA466FA02FB4A5 /* AppAvailability.h */,
 			);
 			name = Plugins;
 			path = Skatespots.com.au/Plugins;
@@ -510,6 +514,7 @@
 				437B979D1967BFAC00BBF68A /* CDVLocation.m in Sources */,
 				91FE39763BB64B69B8687E83 /* CDVStatusBar.m in Sources */,
 				437B97A51967C56200BBF68A /* SocialSharing.m in Sources */,
+				4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +601,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
+				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};
@@ -637,7 +642,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
+				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};

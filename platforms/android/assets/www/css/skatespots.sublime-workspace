@@ -96,18 +96,53 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
+			"contents": "<?php\n\n$result = mysql_query(\"SELECT * FROM facebook WHERE post_count>0 ORDER BY time DESC LIMIT 6 \");\n\n\nwhile($row=mysql_fetch_array($result)) { \n$fb_id = $row['fb_id'];\n$name = $row['name'];\n$first_name = $row['first_name'];\n$id=$row['id'];$site_username = $row['site_username'];\n?>\n\n\n\n<li class=\"fb-hero\">\n<a href=\"<?php bloginfo('url'); ?>/my-spot/<?php echo $site_username; ?>\">\n<img src=\"http://graph.facebook.com/<?php echo $fb_id; ?>/picture\">\n<div class=\"user_details\">\n<span class=\"user_name\"><?php echo $name; ?></span>\n<span class=\"user_link\">View all spots &amp; parks<!--  from <?php echo $first_name; ?> -->\n</div>\n</a>\n\n</li>\n\n\n\n<?php } ?>\n",
 			"settings":
 			{
-				"buffer_size": 3336,
+				"buffer_size": 656,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+			"contents": "<?php\n// Get Nearby Spots or Parks\ndefine('WP_USE_THEMES', false);\nrequire('wp-load.php');\n\n// set header for json mime type\nheader('Access-Control-Allow-Origin: *');\nheader('Access-Control-Allow-Methods: GET');\nheader('Content-type: application/json;');\nheader('Connection: keep-alive;');\n\n$result = mysql_query(\"SELECT * FROM facebook WHERE post_count > 0 ORDER BY post_count DESC LIMIT 10\");\n\n$postCount = 0;\n\nwhile($row=mysql_fetch_array($result)) { \n    $fb_id = $row['fb_id'];\n    $name = $row['name'];\n    $first_name = $row['first_name'];\n    $id=$row['id'];\n    $site_username = $row['site_username'];\n    $post_count = $row['post_count'];\n\n	$jsonpost[$postCount][\"rank\"] = $postCount+1;\n   	$jsonpost[$postCount][\"id\"] = $fb_id;\n   	$jsonpost[$postCount][\"name\"] = $name;\n   	$jsonpost[$postCount][\"first_name\"] = $first_name;\n  	$jsonpost[$postCount][\"site_username\"] = $site_username;\n  	$jsonpost[$postCount][\"post_count\"] = $post_count;\n  	$jsonpost[$postCount][\"thumbnail\"] = 'http://graph.facebook.com/'.$fb_id.'/picture';\n\n   	$postCount++;\n\n    }\n    echo json_encode($jsonpost);\n?>",
+			"file": "/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/getleader.php",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 183,
+				"buffer_size": 1100,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 46071,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/menu.html",
+			"settings":
+			{
+				"buffer_size": 2985,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spot-content.html",
+			"settings":
+			{
+				"buffer_size": 6884,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 24570,
 				"line_ending": "Unix"
 			}
 		}
@@ -139,17 +174,23 @@
 	},
 	"file_history":
 	[
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/index.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/menu.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/leaderboard.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/about.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/top.html",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/css/style.css",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/controllers.js",
+		"/Users/dylanjones/Desktop/getLeader.php",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spot-content.html",
+		"/Users/dylanjones/Desktop/gettop.php",
+		"/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/page.php",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+		"/Users/dylanjones/Desktop/Skatespots.com.au/www/index.html",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/src/android/facebook/res/values/facebookconnect.xml",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/add-form.html",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/user.html",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spot-content.html",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/controllers.js",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/menu.html",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/css/style.css",
 		"/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/getlogin.php",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/cdv-plugin-fb-connect.js",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/facebook-js-sdk.js",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/www/cdv-plugin-fb-connect.js",
@@ -157,7 +198,6 @@
 		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/www/facebook-js-sdk.js",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/www/cdv-plugin-fb-connect.js",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spots.html",
-		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/top.html",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/add.html",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/platforms/ios/build/emulator/Skatespots.com.au.app/www/css/style.css",
 		"/Users/dylanjones/Desktop/Skatespots.com.au/www/lib/ionic/css/ionic.css",
@@ -184,7 +224,6 @@
 		"/Users/dylanjones/Desktop/Skatespots.com.au/channel.html",
 		"/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/addapp.php",
 		"/Users/dylanjones/Desktop/addapp.php",
-		"/Users/dylanjones/Desktop/gettop.php",
 		"/Users/dylanjones/Desktop/myApp/www/config.xml",
 		"/Users/dylanjones/Desktop/myApp/www/index.html",
 		"/Users/dylanjones/Desktop/myApp/config.xml",
@@ -216,6 +255,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"splash",
+			"alert",
+			"modal",
+			"add",
+			"comment",
+			"spotsCt",
+			".leader",
+			"top",
+			"leader",
+			"img",
+			"spotsC",
+			"thumb",
+			"thumbnail",
+			"top",
+			"postCount",
+			"jsonpost",
+			"top",
+			"comment",
 			"fb",
 			"cordova",
 			"userCt",
@@ -325,25 +382,7 @@
 			"max-wid",
 			"map-list",
 			"map",
-			"div.list.map-preview",
-			"map",
-			"list",
-			"map",
-			"userLat",
-			"userlatLng",
-			"mapInfo",
-			"nearby",
-			"tiles",
-			"login",
-			"btn",
-			"scope.",
-			".apply",
-			".apple",
-			"nearby",
-			"parse",
-			"height",
-			"parse",
-			"playList"
+			"div.list.map-preview"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -361,65 +400,182 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/app.js",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3336,
+						"buffer_size": 656,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								451,
+								384
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/private/var/folders/_9/2dh1m41s1kjd1qtflnqcs4p00000gn/T/fz3temp-1/getleader.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1100,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								693,
+								693
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 31.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46071,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5285,
+								5288
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2751.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/menu.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2985,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2063,
+								2063
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 642.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/plugins/com.phonegap.plugins.facebookconnect/src/android/facebook/res/values/facebookconnect.xml",
+					"buffer": 4,
+					"file": "/Users/dylanjones/Desktop/Skatespots.com.au/www/templates/spot-content.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 183,
+						"buffer_size": 6884,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								160,
-								133
+								6277,
+								6284
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/XML/XML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2029.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24570,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19760,
+								19760
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 22227.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

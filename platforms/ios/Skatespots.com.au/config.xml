@@ -50,12 +50,15 @@
         <param name="onload" value="true" />
     </feature>
     <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin" />
+    <feature name="AppAvailability">
+        <param name="ios-package" value="AppAvailability" />
+    </feature>
     <name>Skatespots.com.au</name>
     <description>
-        An Ionic Framework and Cordova project.
+        The Skatespots.com.au iPhone App
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="dylan@skatespots.com.au" href="http://www.skatespots.com.au">
+        Dylan Jones
     </author>
     <content src="index.html" />
     <access origin="*" />
