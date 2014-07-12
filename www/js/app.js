@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 /** @TODO
  *    as mentioned in index.html rename the module from starter to something more relevant
- * /
+ */
 angular.module('starter', ['ionic', 'starter.controllers'])
 
 // .config(function (ezfbProvider) {
