@@ -1010,15 +1010,19 @@ angular.module('starter.controllers', [])
         $scope.address = results.address + ', ' + results.suburb + ', ' + results.state;
 
 
-        appAvailability.check(
-        'comgooglemaps://', // URI Scheme
-        function() {  // Success callback
-        $scope.directionsUrl = 'comgooglemaps://?daddr='+results.addressFull;
-        },
-        function() {  // Error callback
-        $scope.directionsUrl = 'http://maps.apple.com/?daddr='+results.addressFull;
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            appAvailability.check(
+            'comgooglemaps://', // URI Scheme
+            function() {  // Success callback
+            $scope.directionsUrl = 'comgooglemaps://?daddr='+results.addressFull;
+            },
+            function() {  // Error callback
+            $scope.directionsUrl = 'http://maps.apple.com/?daddr='+results.addressFull;
+            }
+            );
         }
-        );
 
 
         if (results.type == "park") {
