@@ -76,6 +76,13 @@ module.exports = [
         "clobbers": [
             "window.facebookConnectPlugin"
         ]
+    },
+    {
+        "file": "plugins/com.ohh2ahh.plugins.appavailability/www/AppAvailability.js",
+        "id": "com.ohh2ahh.plugins.appavailability.AppAvailability",
+        "clobbers": [
+            "appAvailability"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -88,7 +95,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.2.9",
     "org.apache.cordova.statusbar": "0.1.3",
     "org.apache.cordova.geolocation": "0.3.8",
-    "com.phonegap.plugins.facebookconnect": "0.5.0"
+    "com.phonegap.plugins.facebookconnect": "0.5.0",
+    "com.ohh2ahh.plugins.appavailability": "0.3.0"
 }
 // BOTTOM OF METADATA
 });

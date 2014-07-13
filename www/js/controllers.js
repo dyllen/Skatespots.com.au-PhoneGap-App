@@ -1008,7 +1008,22 @@ angular.module('starter.controllers', [])
         $scope.slug = results.title.replace(/\s+/g, '-').toLowerCase();
         $scope.mapName = 'map-' + $scope.slug;
         $scope.address = results.address + ', ' + results.suburb + ', ' + results.state;
-        $scope.directionsUrl = 'http://maps.apple.com/?daddr=' + results.addressFull;
+
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            appAvailability.check(
+            'comgooglemaps://', // URI Scheme
+            function() {  // Success callback
+            $scope.directionsUrl = 'comgooglemaps://?daddr='+results.addressFull;
+            },
+            function() {  // Error callback
+            $scope.directionsUrl = 'http://maps.apple.com/?daddr='+results.addressFull;
+            }
+            );
+        }
+
 
         if (results.type == "park") {
             $scope.sibling = 'spot';

@@ -49,16 +49,13 @@
                 <div class="list more-list">
                     <ion-slide-box class="nearby-slide">
                         <ion-slide ng-repeat="Spot in nearby">
-                            <a class="list card" href="#/app/playlists/{{Spot.id}}">
-                                <div class="item item-avatar">
-                                    <h2 ng-bind-html='Spot.title'></h2>
-                                </div>
-                                <div class="spot-img" style="background:url({{Spot.thumbnail}}); background-size:cover; background-position: center center;"></div>
-                                <div class="item item-avatar">
-                                    <p>{{Spot.distance}}<span class="btn_blue">Check it out</span>
-                                    </p>
-                                </div>
-                            </a>
+                         <a class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
+                           <i class="rank-icon"></i>
+                            <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
+                            <h2>{{Spot.title}}</h2>
+                            <p>{{Spot.distance}}</p>
+                            <span class="btn_blue">Check it out</span>
+                          </a>
                         </ion-slide>
                     </ion-slide-box>
                 </div>
@@ -70,16 +67,13 @@
                 <div class="list more-list">
                     <ion-slide-box class="nearby-slide">
                         <ion-slide ng-repeat="Spot in nearbySibling">
-                            <a class="list card" href="#/app/playlists/{{Spot.id}}">
-                                <div class="item item-avatar">
-                                    <h2 ng-bind-html='Spot.title'></h2>
-                                </div>
-                                <div class="spot-img" style="background:url({{Spot.thumbnail}}) center center; background-size:cover; background-position: center center;"></div>
-                                <div class="item item-avatar">
-                                    <p>{{Spot.distance}}<span class="btn_blue">Check it out</span>
-                                    </p>
-                                </div>
-                            </a>
+                            <a class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
+                               <i class="rank-icon"></i>
+                                <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
+                                <h2>{{Spot.title}}</h2>
+                                <p>{{Spot.distance}}</p>
+                                <span class="btn_blue">Check it out</span>
+                              </a>
                         </ion-slide>
                     </ion-slide-box>
                 </div>

@@ -1,16 +1,5 @@
 angular.module('starter.controllers', [])
 
-.run(function($ionicPlatform) {
-if(navigator.splashscreen){
-  $ionicPlatform.ready(function() {
-    setTimeout(function() {
-        navigator.splashscreen.hide();
-    }, 100);
- });
-  }
-})
-
-
 .controller('AppCtrl', function ($scope, searchFactory, $ionicPopup, $location, $ionicSideMenuDelegate, $rootScope, $http) {
     $scope.nav = '<img class="title-image" width="150" src="img/logo.png" />';
     $scope.fbResponse = null;
@@ -54,7 +43,6 @@ if(navigator.splashscreen){
             $scope.signinLoader = true;
             FB.login(function (response) {
             var accesstoken = response.authResponse.accessToken;
-            console.log('access token', accesstoken);
 
             $http.get('http://www.skatespots.com.au/getlogin.php?accesstoken=' + accesstoken, {
                 cache: true
@@ -99,7 +87,6 @@ if(navigator.splashscreen){
                 $scope.searchLoading = true;
                 var search = $('#search').val();
                 searchFactory.getSpots(search, function (results) {
-                    console.log(results);
                     $scope.searchLoading = false;
                     $scope.searchResults = results;
                     $scope.noResults = false;
@@ -156,7 +143,6 @@ if(navigator.splashscreen){
     };
 })
 
-
 .controller('SpotsCtrl', function ($scope, fruitsFactory, nearbyAjax, $ionicActionSheet, $stateParams, $rootScope, $ionicPopup, $ionicScrollDelegate) {
     $scope.loading = true;
     $scope.loadingMap = true;
@@ -170,6 +156,13 @@ if(navigator.splashscreen){
     }
     
     function letsDoMap() {
+
+    if(navigator.splashscreen){
+            setTimeout(function() {
+                navigator.splashscreen.hide();
+            }, 100);
+    }
+
     // angular.element(document).ready(function () {
     if(!$rootScope.currentRefine || $rootScope.currentRefine == 'Nearby'){
         $rootScope.currentRefine = 'Nearby';
@@ -610,8 +603,14 @@ if(navigator.splashscreen){
 .controller('favouritesCtrl', function ($scope, $rootScope, favouriteFactory) {
     var fbid = $rootScope.fbResponse.id;
     $scope.loading = true;
+    $scope.nofav = false;
     if (fbid) {
         favouriteFactory.getSpots(fbid, function (results) {
+
+            if(results == 'no favourites'){
+                $scope.nofav = true;
+            }
+
             $scope.favourites = results;
             $scope.loading = false;
         });
@@ -641,6 +640,31 @@ if(navigator.splashscreen){
             $ionicScrollDelegate.scrollTop();
             $scope.showSpots = true;
         }
+    });
+})
+
+
+.factory('leaderFactory', function ($http) {  
+    return {
+        getLeaders: function (callback) {      
+            $http.get('http://skatespots.com.au/getleader.php').success(callback);    
+        }  
+    };
+})
+
+.controller('leaderCtrl', function ($scope, leaderFactory, $ionicScrollDelegate) {
+    $scope.loading = true;
+    leaderFactory.getLeaders(function (results) {
+        $scope.loading = false;
+        $scope.users = results;
+    });
+})
+
+.controller('aboutCtrl', function ($scope) {
+    $('.about-content a').click(function(e){
+        e.preventDefault;
+        window.open(this.href,'_system');
+        return false;
     });
 })
 
@@ -896,16 +920,13 @@ if(navigator.splashscreen){
 
         google.maps.event.addListener(map, 'click', function (event) {
             var currentLatLong = event.latLng;
-            console.log("all dat", currentLatLong);
             marker.setPosition(currentLatLong);
             makeAddress(currentLatLong.k, currentLatLong.A);
         });
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
-            console.log('im in here');
         } else {
-            console.log("Geolocation is not supported by this browser.");
             var position = [];
             position['coords']['latitude'] = -28.500000;
             position['coords']['longitude'] = 134.472656;
@@ -931,8 +952,6 @@ if(navigator.splashscreen){
                     var street = data[0].address_components[0].short_name + " " + data[0].address_components[1].short_name;
                     var sub = data[0].address_components[2].short_name;
                     var state = data[0].address_components[3].long_name;
-
-                    console.log('The Address Array', data[0]);
 
                     $('input#input-address').val(street);
                     $('input#input-sub').val(sub);
@@ -962,7 +981,16 @@ if(navigator.splashscreen){
     };
 })
 
-.controller('PlaylistCtrl', function ($scope, spotContentFactory, favouriteFactory, $stateParams, $ionicActionSheet, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicPopup, $rootScope) {
+.directive('gridImage', function(){
+      return function($scope, element, attrs){
+        var url = attrs.gridImage;
+        element.css({
+          'background-image': 'url(' + url +')',
+        });
+      };
+    })
+
+.controller('PlaylistCtrl', function ($scope, spotContentFactory, favouriteFactory, $stateParams, $ionicActionSheet, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicPopup, $rootScope, $ionicModal) {
 
     $scope.loading = true;
     $scope.showBody = false;
@@ -988,19 +1016,42 @@ if(navigator.splashscreen){
             $scope.sibling = 'park';
         }
 
-        console.log(results);
-
         if (results.fb) {
             $scope.fbImage = 'http://graph.facebook.com/' + results.fb.fbID + '/picture?width=40&height=40';
         }
 
-        // $(".slider").prependTo(".spots-view").addClass('moved');
-        // $(".slider-pager").before($(".img-select"));
+
+
+        $scope.data = {};
+        $scope.grids = results.spotImages;
+
+        $ionicModal.fromTemplateUrl('modal.html', function(modal) {
+        $scope.gridModal = modal;
+          }, {
+            scope: $scope,
+            animation: 'slide-in-up'
+          });
+          // open video modal
+          $scope.openModal = function(selected) {
+            $scope.data.selected = selected;
+            $scope.gridModal.show();
+          };
+          // close video modal
+          $scope.closeModal = function() {
+            $scope.gridModal.hide();
+          };
+          //Cleanup the video modal when we're done with it!
+          $scope.$on('$destroy', function() {
+            $scope.gridModal.remove();
+          });
 
         $ionicSlideBoxDelegate.update();
 
 
         angular.element(window).ready(function () {
+
+            var fbWidth = $(window).width();
+            $scope.fbWidth = fbWidth-30;
 
             $('.spot-description a').click(function(e){
                 e.preventDefault;
@@ -1016,9 +1067,7 @@ if(navigator.splashscreen){
             }
 
             $('#async-upload').change(function () {
-                console.log('changed');
                 $('#addPhoto').submit();
-                console.log('submited');
                 $scope.$apply(function () {
                     $scope.uploading = true;
                 })
@@ -1059,20 +1108,20 @@ if(navigator.splashscreen){
 
         })
 
-        $scope.showComments = function () {
-            // if($rootScope.fbResponse){
-            // $('#comments .btn_gold').hide();
-            $ionicScrollDelegate.scrollBottom();
-            $scope.loadingComments = true;
-            FB.XFBML.parse(document.getElementById('comments'), function () {
-                $scope.$apply(function () {
-                    $scope.loadingComments = false;
-                    $('#comments iframe').show();
-                    $scope.$broadcast('scroll.resize');
-                });
-            });
-            // }
-        }
+        // $scope.showComments = function () {
+        //     // if($rootScope.fbResponse){
+        //     // $('#comments .btn_gold').hide();
+        //     $ionicScrollDelegate.scrollBottom();
+        //     $scope.loadingComments = true;
+        //     FB.XFBML.parse(document.getElementById('comments'), function () {
+        //         $scope.$apply(function () {
+        //             $scope.loadingComments = false;
+        //             $('#comments iframe').show();
+        //             $scope.$broadcast('scroll.resize');
+        //         });
+        //     });
+        //     // }
+        // }
 
 
         $scope.openURL = function (urlString) {
@@ -1171,7 +1220,6 @@ if(navigator.splashscreen){
     $scope.loading = true;
 
     userFactory.getUser(function (results) {
-        console.log(results);
         $scope.loading = false;
         $scope.name = results.user;
         $scope.id = results.id;
@@ -1281,7 +1329,7 @@ if(navigator.splashscreen){
                 })
             });
 
-            if(results.parks != undefined && results.spots != undefined){
+            if( results.parks != undefined || results.spots != undefined){
                 var bounds = new google.maps.LatLngBounds();
                 for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
                     bounds.extend(LatLngList[i]);

@@ -43,21 +43,30 @@
         <ion-item nav-clear menu-close href="#/app/spots/park">
           Parks
         </ion-item>
-        <ion-item nav-clear ng-show="fbResponse" menu-close href="#/app/favourites">
+        <ion-item nav-clear menu-close href="#/app/leaderboard">
+          User leaderboard
+        </ion-item>
+        <ion-item nav-clear menu-close ng-show="fbResponse" href="#/app/favourites">
           Your favourites
         </ion-item>
       </ion-list>
  <button ng-show="signinLoader" class="button button-full button-light sign-loader">
       Signing in <i class="icon ion-loading-c"></i>
     </button>
-      <a class="btn_gold btn_signin" ng-click="fbLogin()" ng-hide="fbResponse">Sign in</a>
-      <a class="btn_blue btn_add" href="#/app/add" nav-clear menu-close><i class="ion-ios7-plus-empty"></i>Add a spot or park</a>
+      <a class="btn_simple btn_signin" ng-click="fbLogin()" ng-hide="fbResponse">Sign in</a>
+      <a class="btn_simple btn_add" href="#/app/add" nav-clear menu-close><i class="ion-ios7-plus-empty"></i>Add a spot or park</a>
       <!-- <a class="signout" ng-show="fbResponse" ng-click="fbLogOut()">sign out</a> -->
 
       <div id="fb-root"></div>
       <div id="data"></div>
-
-      <a class="feedback" href="mailto:dylan@skatespots.com.au?subject=Skatespots.com.au App">contact us</a>
     </ion-content>
+
+    <ion-footer-bar class="menu-footer">
+      <ion-item nav-clear menu-close href="#/app/about">
+        About Us
+      </ion-item>
+  </div>
+</ion-footer-bar>
+  
   </ion-side-menu>
 </ion-side-menus>

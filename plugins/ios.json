@@ -71,6 +71,10 @@
                         {
                             "xml": "<plugin name=\"FacebookConnectPlugin\" value=\"FacebookConnectPlugin\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppAvailability\"><param name=\"ios-package\" value=\"AppAvailability\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -175,6 +179,9 @@
             "APP_ID": "267591593342063",
             "APP_NAME": "Skat­e­s­p­o­t­s­.­c­o­m.au",
             "PACKAGE_NAME": "skatespots"
+        },
+        "com.ohh2ahh.plugins.appavailability": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
     "dependent_plugins": {}

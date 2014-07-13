@@ -1,6 +1,6 @@
 Skatespots.com.au Phonegap App
 =====================
 
-type: grunt web_server to run
+run `grunt web_server` in terminal to start server
 
-then open http://localhost:8000/www/index.html
+open http://localhost:8000/www/index.html
