@@ -1,6 +1,52 @@
+/**
+ * @TODO
+ *  rename the module to be something more relevant
+ *  see comments below about structure for more detail
+ */
 angular.module('starter.controllers', [])
 
+/**
+ * @TODO
+ *  between the controllers, factories and directives in this module there seem to be a few
+ *  distinct pieces of functionality which could be split into modules of their own
+ *  and only referenced when required.
+ *
+ *  for example: place favouriteFactory and favouritesCtrl in a new angular module and when you want use of them
+ *  just include that module as a dependency. e.g  'angular.module('skatesports.user, ['skatesports.favourites'])'
+ *  that'll mean the user module now has access to the favourites module.
+ *
+ *  the user controller or factory could then access methods from the favourites controller or factory e.g.
+ *  .controller('UserCtrl', function(favouriteFactory) {
+ *
+ *      $scope.userFavourites = favouriteFactory.get(userId);
+ *
+ *   });
+ *
+ *  combine the js and templates folders by creating an app folder
+ *  under the app folder create a new folder for each new angular module, it may seem excessive but it'll help
+ *  keep the idea of modularity clear. if a piece of code you writing into a module doesn't seem to fit create a new
+ *  module to accomodate it.
+ *
+ *  you'll end up with a folder structure like so:
+ *  - app
+ *      - user
+ *          - templates
+ *              - user.html
+ *          - user.js
+ *      - favourites
+ *          - templates
+ *              - favourites.html
+ *          - favourites.js
+ *      - index.js
+ *
+ *  each js file can contain all controller, factories, services, directives etc...
+ *
+ *  the index.js will be your main module which requires all other modules, similar to how app.js is working currently
+ *  execpt it'll probably require many more modules than the two it does currently
+ *
+ */
 .controller('AppCtrl', function ($scope, searchFactory, $ionicPopup, $location, $ionicSideMenuDelegate, $rootScope, $http) {
+    // @TODO if this is static it should be placed in an html file
     $scope.nav = '<img class="title-image" width="150" src="img/logo.png" />';
     $scope.fbResponse = null;
 
@@ -107,7 +153,13 @@ angular.module('starter.controllers', [])
 
 .factory('searchFactory', function ($http, $stateParams) {  
     return {
-        getSpots: function (search, callback) {      
+        getSpots: function (search, callback) {
+            /**
+             * @TODO
+             *  you should try and catch errors too where possible, just in case the
+             *  server is down or someone has a bad connection on a mobile device
+             *  see https://docs.angularjs.org/api/ng/service/$http
+             */      
             $http.get('http://www.skatespots.com.au/getsearch.php?search=' + search, {
                 cache: true
             }).success(callback);    
@@ -154,7 +206,7 @@ angular.module('starter.controllers', [])
     } else {
         letsDoMap();
     }
-    
+
     function letsDoMap() {
 
     if(navigator.splashscreen){
@@ -203,22 +255,28 @@ angular.module('starter.controllers', [])
             $scope.loadedMessage = 'All ' + $scope.currentType + 's in ' + $rootScope.currentRefine + ' loaded';
         });
     }
-    
+
 
 
     fruitsFactory.allSpots(function (results) {
-      
+
         // var myLatlng = new google.maps.LatLng(results.lat,results.long);
         // var state = $rootScope.currentRefine;
 
         var currentRefine = $rootScope.currentRefine;
-        
+
         if( currentRefine == 'Nearby' ){
           var mapZoom = 12;
       	  var mapCenter = new google.maps.LatLng($rootScope.userLat, $rootScope.userLong);
         } else {
             switch (currentRefine) {
                     case "VIC":
+                        /**
+                         * @TODO
+                         *  create a constants module to handle any values which are repeated throughout the code
+                         *  e.g. http://tutorials.jenkov.com/angularjs/dependency-injection.html#constants
+                         *  or search 'angularjs constants' for lots more references and information
+                         */
                         $scope.currentState = 'Victoria';
                         var mapZoom = 6;
                         var mapCenter = new google.maps.LatLng(-37, 145.5000);
@@ -290,7 +348,7 @@ angular.module('starter.controllers', [])
 
         }
 
-        
+
         var map = new google.maps.Map(document.getElementById('listMap'), {
             zoom: mapZoom,
             disableDefaultUI: true,
@@ -753,9 +811,9 @@ angular.module('starter.controllers', [])
     $scope.submitForm = function () {
 
 
-        // bind to the form's submit event 
-        // inside event callbacks 'this' is the DOM element so we first 
-        // wrap it in a jQuery object and then invoke ajaxSubmit 
+        // bind to the form's submit event
+        // inside event callbacks 'this' is the DOM element so we first
+        // wrap it in a jQuery object and then invoke ajaxSubmit
 
         var failed = false;
         var oneChecked = false;
@@ -831,8 +889,8 @@ angular.module('starter.controllers', [])
             $('#form').submit();
         }
 
-        // !!! Important !!! 
-        // always return false to prevent standard browser submit and page navigation 
+        // !!! Important !!!
+        // always return false to prevent standard browser submit and page navigation
         return false;
 
     };
@@ -842,11 +900,11 @@ angular.module('starter.controllers', [])
         $('#form').submit(function (e) {
             e.preventDefault;
             var submitOptions = {
-                beforeSubmit: showRequest, // pre-submit callback 
-                success: showResponse // post-submit callback 
+                beforeSubmit: showRequest, // pre-submit callback
+                success: showResponse // post-submit callback
             };
 
-            // pre-submit callback 
+            // pre-submit callback
             function showRequest(formData, jqForm, options) {
                 // $ionicPopup.alert({
                 //     title: 'Cheers!',
@@ -856,7 +914,7 @@ angular.module('starter.controllers', [])
                 return true;
             }
 
-            // post-submit callback 
+            // post-submit callback
             function showResponse(responseText, statusText, xhr, $form, $locations) {
                 var newSpot = "/app/playlists/" + responseText;
                 $scope.$apply(function () {

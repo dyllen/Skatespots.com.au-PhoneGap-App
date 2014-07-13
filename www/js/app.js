@@ -4,6 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+/** @TODO
+ *    rename this to be something more relevant to the project
+ */
 angular.module('starter', ['ionic', 'starter.controllers'])
 
 // .config(function (ezfbProvider) {
