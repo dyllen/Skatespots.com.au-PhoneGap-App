@@ -56,6 +56,18 @@ angular.module('starter.controllers', [])
         function (ratio) {
             if (ratio == 1) {
                 setTimeout(function () {
+                    /**
+                     * @TODO
+                     *  avoid executing jquery commands to alter the dom in controllers, this is considered a bad practice in angular
+                     *  you could create a directive which runs this piece of jquery but the ideal solution would be to remove the jquery all together
+                     *  and think of a more angular way of achieving what you're trying to do
+                     *
+                     *  having a quick glance at the application i can see what you're achieving but try and think of the attribute
+                     *  as just another value set on the $scope which you can alter when required
+                     *
+                     *  take a look at:
+                     *      https://docs.angularjs.org/api/ng/function/angular.element for access to jqlite functionality within angular
+                     */
                     $('#search').removeAttr('disabled');
                 }, 400);
             } else {
@@ -90,6 +102,12 @@ angular.module('starter.controllers', [])
             FB.login(function (response) {
             var accesstoken = response.authResponse.accessToken;
 
+            /**
+             * @TODO
+             *  create a constants module to handle any values which are repeated throughout the code, here it'd be the api base url
+             *  e.g. http://tutorials.jenkov.com/angularjs/dependency-injection.html#constants
+             *  or search 'angularjs constants' for lots more references and information
+             */
             $http.get('http://www.skatespots.com.au/getlogin.php?accesstoken=' + accesstoken, {
                 cache: true
             });    
@@ -120,7 +138,15 @@ angular.module('starter.controllers', [])
         }
     }
 
-
+    /**
+     * @TODO
+     *  again try and avoid using jquery to reach into parts of the application, instead make those areas available by
+     *  adding them to the scope
+     *
+     *  take a look at:
+     *      https://docs.angularjs.org/api/ng/input/input%5Btext%5D for angular form examples
+     *      https://stackoverflow.com/questions/15305764/angularjs-clear-input-text-with-button for a similar problem
+     */
     $scope.clearSearch = function () {
         $('#search').val('');
         $scope.searchResults = null;
@@ -273,9 +299,8 @@ angular.module('starter.controllers', [])
                     case "VIC":
                         /**
                          * @TODO
-                         *  create a constants module to handle any values which are repeated throughout the code
-                         *  e.g. http://tutorials.jenkov.com/angularjs/dependency-injection.html#constants
-                         *  or search 'angularjs constants' for lots more references and information
+                         *  these state names which are repeated numerous times throughout the code would be the perfect
+                         *  candidate for a constant, as metioned on line 94
                          */
                         $scope.currentState = 'Victoria';
                         var mapZoom = 6;
