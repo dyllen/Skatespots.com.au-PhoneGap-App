@@ -117,6 +117,30 @@ angular.module('starter.controllers', [])
                         var userPage = "/app/user/" + response.id;
                         $scope.$apply(function () {
                             $scope.fbResponse = response;
+                            /**
+                             * @TODO
+                             *  treat $rootScope as a global namespace, try not to pollute it where at all possible
+                             *
+                             *  a cursory glance with my limited knowledge of the app shows you're storing a few small values on the $rootScope
+                             *  however, this doesn't include this response defined below as well as a few other values set upon specific
+                             *  functions/requests so may be larger than I'm aware of. trying to clear as much off the $rootScope as you can sooner
+                             *  rather than later will save you headaches later down the line
+                             *
+                             *  also be wary of causing memory leaks or performance issues when using $rootScope as it won't get destroyed
+                             *  like other scopes do, this is especially important when building mobile applications as you often don't
+                             *  have the luxury of as much memory to play with as on a desktop
+                             *
+                             *  alternatives include:
+                             *      store data you want reference to at a later point with $cacheFactory
+                             *      store the data in local storage, allowing persistence per device
+                             *      create a service which alongside getting and setting data can offer related functionality
+                             *
+                             *  references:
+                             *      https://stackoverflow.com/questions/16739084/angularjs-using-rootscope-as-a-data-store
+                             *      https://docs.angularjs.org/api/ng/service/$cacheFactory
+                             *      https://docs.angularjs.org/api/ng/type/$cacheFactory.Cache
+                             *      https://stackoverflow.com/questions/18856341/how-can-i-unregister-a-broadcast-event-to-rootscope-in-angularjs
+                             */
                             $rootScope.fbResponse = response;
                             $scope.fbImage = 'http://graph.facebook.com/' + response.id + '/picture?width=55&height=55';
                             $scope.signinLoader = false;
@@ -152,6 +176,10 @@ angular.module('starter.controllers', [])
         $scope.searchResults = null;
     }
 
+    /**
+     * @TODO
+     *  by removing jquery code as mentioned above you'll be able to avoid having to rely on document.ready
+     */
     angular.element(document).ready(function () {
 
         $('#search').keyup(function () {
@@ -193,6 +221,12 @@ angular.module('starter.controllers', [])
     };
 })
 
+/**
+ * @TODO
+ *  these small factories offer nice little islands of logic, however try and stay away from referencing the $stateParams directly
+ *  as doing so will mean they may be less reusable.
+ *  instead pass the spotType through as an argument from the controller
+ */
 .factory('fruitsFactory', function ($http, $stateParams) {  
     return {
         getSpots: function (currentState, callback) {
@@ -221,6 +255,15 @@ angular.module('starter.controllers', [])
     };
 })
 
+/**
+ * @TODO
+ *  this is a large and complex controller, perhaps try and split it down into smaller chunks or create functions which tackle smaller bits
+ *  of functionality seperately, doing this will make the application easier to refactor, bugfix against or just come back to and pick up
+ *  quickly when you may not have worked on it for a while. comments again specific bits of functionality, what arguments they take, what they return
+ *  help others understand the code, try using jsdocs http://usejsdoc.org/about-getting-started.html#adding-documentation-comments-to-your-code there
+ *  are plugins available for most IDE's
+ *
+ */
 .controller('SpotsCtrl', function ($scope, fruitsFactory, nearbyAjax, $ionicActionSheet, $stateParams, $rootScope, $ionicPopup, $ionicScrollDelegate) {
     $scope.loading = true;
     $scope.loadingMap = true;
@@ -236,6 +279,12 @@ angular.module('starter.controllers', [])
     function letsDoMap() {
 
     if(navigator.splashscreen){
+            /**
+             * @TODO
+             *  use angular's $timeout rather than setTimeout, it'll save you having to do $scope.$apply
+             *  https://docs.angularjs.org/api/ng/service/$timeout
+             *  https://coderwall.com/p/udpmtq
+             */
             setTimeout(function() {
                 navigator.splashscreen.hide();
             }, 100);
@@ -283,7 +332,29 @@ angular.module('starter.controllers', [])
     }
 
 
-
+    /**
+     * @TODO
+     *  a lot happens at the point of this function returning, try and create small functions which live outside of this function
+     *  but are referenced when needed. e.g.
+     *
+     *      /**
+     *       * decide the state dependent upon the current users location
+     *       * @params {String} location
+     *       * @returns {Object} state details
+     *       *
+     *      function setLocation(currentRefine) {
+     *          // run the currentRefine logic in this function and return values like the currentState, mapZoom and mapCentre
+     *          return {
+     *              currentState: STATE_CONST[i].name,
+     *              mapZoom: STATE_CONST[i].zoom,
+     *              mapCenter: google.maps.LatLng(STATE_CONST[i].lat, STATE_CONST[i].long)
+     *          }
+     *      }
+     *
+     *      fruitsFactory.allSpots(function (result) {
+     *          $scope.location = setLocation($rootScope.currentRefine);
+     *      })
+     */
     fruitsFactory.allSpots(function (results) {
 
         // var myLatlng = new google.maps.LatLng(results.lat,results.long);
@@ -296,12 +367,12 @@ angular.module('starter.controllers', [])
       	  var mapCenter = new google.maps.LatLng($rootScope.userLat, $rootScope.userLong);
         } else {
             switch (currentRefine) {
+                    /**
+                     * @TODO
+                     *  these state names which are repeated numerous times throughout the code would be the perfect
+                     *  candidate for a constant, as metioned on line 105
+                     */
                     case "VIC":
-                        /**
-                         * @TODO
-                         *  these state names which are repeated numerous times throughout the code would be the perfect
-                         *  candidate for a constant, as metioned on line 94
-                         */
                         $scope.currentState = 'Victoria';
                         var mapZoom = 6;
                         var mapCenter = new google.maps.LatLng(-37, 145.5000);
@@ -527,6 +598,10 @@ angular.module('starter.controllers', [])
 
             $ionicActionSheet.show({
                 titleText: 'Select a state',
+                /**
+                 * @TODO
+                 *  here's where you could use your constants again, allowing a single source of truth throughout the app
+                 */
                 buttons: [{
                     text: 'Victoria'
                 }, {
@@ -665,7 +740,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-
+/**
+ * @TODO
+ *  try and keep controller naming conventions consistent, the standard is PascalCase rather than camelCase
+ *  http://c2.com/cgi/wiki?PascalCase
+ */
 .controller('parksCtrl', function ($scope, parksFactory) {
     parksFactory.getParks(function (results) {
         $scope.Spots = results;
@@ -833,6 +912,12 @@ angular.module('starter.controllers', [])
         $scope.typeId = 13;
     }
 
+    /**
+     * @TODO
+     *  angular has a good range of inbuilt tools when building forms, it'll help avoid using jquery in controllers in this case
+     *  https://docs.angularjs.org/guide/forms
+     *  https://docs.angularjs.org/api/ng/directive/form
+     */
     $scope.submitForm = function () {
 
 
@@ -1079,6 +1164,11 @@ angular.module('starter.controllers', [])
     $scope.showBody = false;
 
     spotContentFactory.getParks(function (results) {
+        /**
+         * @TODO
+         *  this seems like a lot to be adding to the scope
+         *  rather than $scope.spotImages it's better just to reference $scope.spotsContent.images when required
+         */
         $scope.spotsContent = results;
         $scope.spotImages = results.images;
         $scope.nearby = results.nearby;
