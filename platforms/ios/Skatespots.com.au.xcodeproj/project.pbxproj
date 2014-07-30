@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -28,6 +29,7 @@
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		3BF8C09187514A6E992C7E4A /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE2BE00E134788B28DEACA /* CDVDevice.m */; };
 		3C7BDC1E948641BDA2390B81 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB04BE04B9644B0BF3534EC /* CDVInAppBrowser.m */; };
+		4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */; };
 		437B979A1967BF8800BBF68A /* CDVClipboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B97991967BF8800BBF68A /* CDVClipboard.m */; };
 		437B979D1967BFAC00BBF68A /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B979C1967BFAC00BBF68A /* CDVLocation.m */; };
 		437B97A51967C56200BBF68A /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B97A41967C56200BBF68A /* SocialSharing.m */; };
@@ -54,7 +56,6 @@
 		91FE39763BB64B69B8687E83 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		D6BFD5C075EA49F483635621 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E940A18216E3450A9D091AF5 /* Social.framework */; };
-		4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = org.apache.cordova.statusbar/CDVStatusBar.m; sourceTree = "<group>"; };
 		5FFC6B51D35448DAB122E4C5 /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = org.apache.cordova.splashscreen/CDVSplashScreen.m; sourceTree = "<group>"; };
+		646032A83FAA466FA02FB4A5 /* AppAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppAvailability.h; path = com.ohh2ahh.plugins.appavailability/AppAvailability.h; sourceTree = "<group>"; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
 		7E7966D61810823500FA85AD /* icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-50.png"; sourceTree = "<group>"; };
@@ -138,13 +140,12 @@
 		CFA78FCD5D22493D8AEF6D7D /* Accounts.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		E1C3A394122A431FB9B2A768 /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = org.apache.cordova.statusbar/CDVStatusBar.h; sourceTree = "<group>"; };
+		E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppAvailability.m; path = com.ohh2ahh.plugins.appavailability/AppAvailability.m; sourceTree = "<group>"; };
 		E940A18216E3450A9D091AF5 /* Social.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Skatespots.com.au/config.xml; sourceTree = "<group>"; };
-		E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppAvailability.m"; path = "com.ohh2ahh.plugins.appavailability/AppAvailability.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		646032A83FAA466FA02FB4A5 /* AppAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppAvailability.h"; path = "com.ohh2ahh.plugins.appavailability/AppAvailability.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -601,7 +602,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
+				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};
@@ -642,7 +643,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
+				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};

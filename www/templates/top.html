@@ -14,7 +14,6 @@
     </button>
     <ion-list ng-show="showSpots">
        <a ng-repeat="Spot in Spots" class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
-       <i class="rank-icon"></i>
         <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
         <h2>{{Spot.title}}</h2>
         <p>{{Spot.content}}</p>
@@ -23,7 +22,6 @@
     </ion-list>
     <ion-list ng-hide="showSpots">
       <a ng-repeat="Park in Parks" class="item item-thumbnail-left" href="#/app/playlists/{{Park.id}}">
-        <i class="rank-icon"></i>
         <div class="preview-img" style="background:url({{Park.thumbnail}}) center center; background-size: cover;"></div>
         <h2>{{Park.title}}</h2>
         <p>{{Park.content}}</p>

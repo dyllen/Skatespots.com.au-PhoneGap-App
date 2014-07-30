@@ -32,26 +32,41 @@
       <a class="button" href="#/app/addform/park">Add a park</a>
     </div>
     </div>
-    <div class="button-bar bar-light">
+    <div class="button-bar bar-light user-buttons">
         <div class="button-bar listings">
           <a class="button" ng-show="Spots" ng-click="toggleSpots()">Spots</a>
           <a class="button" ng-show="Parks" ng-click="toggleParks()">Parks</a>
+          <a class="button" ng-show="favButton" ng-click="toggleFav()">Favourites</a>
         </div>
       </div>
-      <div class="list" ng-show="showSpots">
-	    <a ng-repeat="Spots in Spots" class="item item-thumbnail-left" href="#/app/playlists/{{Spots.id}}">
-	      <img ng-src="{{Spots.thumbnail}}">
-	      <h2 ng-bind-html="Spots.title"></h2>
-	      <p>{{Spots.address}}, {{Spots.sub}}, {{Spots.state}}</p>
-	    </a>
+      <div class="list user-spots" ng-show="showSpots">
+	    <a ng-repeat="Spot in Spots" class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
+        <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
+        <h2 ng-bind-html="Spot.title"></h2>
+        <p>{{Spot.address}} {{Spot.suburb}}</p>
+        <span class="btn_blue">Check it out</span>
+      </a>
   	</div>
-  	 <div class="list" ng-show="showParks">
-	    <a ng-repeat="Parks in Parks" class="item item-thumbnail-left" href="#/app/playlists/{{Parks.id}}">
-	      <img ng-src="{{Parks.thumbnail}}">
-	      <h2 ng-bind-html="Parks.title"></h2>
-	      <p>{{Parks.address}}, {{Parks.sub}}, {{Parks.state}}</p>
-	    </a>
+  	 <div class="list user-spots" ng-show="showParks">
+	    <a ng-repeat="Spot in Parks" class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
+        <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
+        <h2 ng-bind-html="Spot.title"></h2>
+        <p>{{Spot.address}} {{Spot.suburb}}</p>
+        <span class="btn_blue">Check it out</span>
+      </a>
   	</div>
+    <div class="list user-spots" ng-show="showFav">
+     <button ng-show="favLoading" class="button button-full button-light">
+      <i class="icon ion-loading-c"></i>
+    </button>
+      <a ng-repeat="Spot in favourites" class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
+        <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
+        <h2 ng-bind-html="Spot.title"></h2>
+        <p>{{Spot.address}} {{Spot.suburb}}</p>
+        <span class="btn_blue">Check it out</span>
+      </a>
+      <div class="no-favourites" ng-show="nofav">you haven't added any favourites</div>
+    </div>
   	</div>
   </ion-content>
 </ion-view>

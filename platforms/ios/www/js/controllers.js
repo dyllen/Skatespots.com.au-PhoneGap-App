@@ -1,9 +1,14 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, searchFactory, $ionicPopup, $location, $ionicSideMenuDelegate, $rootScope, $http) {
-    $scope.nav = '<img class="title-image" width="150" src="img/logo.png" />';
-    $scope.fbResponse = null;
 
+
+    if(localStorage.getItem('fbResponse')){
+        $scope.fbResponse = JSON.parse(localStorage.getItem('fbResponse'));
+        $scope.fbImage = 'http://graph.facebook.com/' + $scope.fbResponse.id + '/picture?width=55&height=55';
+    } else {
+        $scope.fbResponse = null;
+    }
     $scope.$watch(function () {
             return $ionicSideMenuDelegate.getOpenRatio();
         },
@@ -11,7 +16,7 @@ angular.module('starter.controllers', [])
             if (ratio == 1) {
                 setTimeout(function () {
                     $('#search').removeAttr('disabled');
-                }, 400);
+                }, 550);
             } else {
                 $('#search').attr('disabled', 'disabled');
             }
@@ -53,7 +58,8 @@ angular.module('starter.controllers', [])
                         var userPage = "/app/user/" + response.id;
                         $scope.$apply(function () {
                             $scope.fbResponse = response;
-                            $rootScope.fbResponse = response;
+                            localStorage.setItem('fbResponse', JSON.stringify(response));
+                            localStorage.setItem('fbID', response.id);
                             $scope.fbImage = 'http://graph.facebook.com/' + response.id + '/picture?width=55&height=55';
                             $scope.signinLoader = false;
                             $location.path(userPage);
@@ -127,7 +133,8 @@ angular.module('starter.controllers', [])
             var currentType = $stateParams.spotType;      
             $http.get('http://www.skatespots.com.au/parks_json.php?spottype=' + currentType, {
                 cache: true
-            }).success(callback);
+            }).success(callback).
+            error(callback);
         }  
     };
 })
@@ -143,19 +150,62 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SpotsCtrl', function ($scope, fruitsFactory, nearbyAjax, $ionicActionSheet, $stateParams, $rootScope, $ionicPopup, $ionicScrollDelegate) {
+.controller('SpotsCtrl', function ($scope, fruitsFactory, nearbyAjax, $ionicActionSheet, $stateParams, $rootScope, $ionicPopup, $ionicScrollDelegate, $ionicModal) {
     $scope.loading = true;
-    $scope.loadingMap = true;
     $scope.currentType = $stateParams.spotType;
     $scope.currentState = 'Select a state';
+    
+    $scope.appheight = $('.spot-list').height();
+
+
+    var previewTop = $scope.appheight / 2 - 127;
+    $('div.list.map-preview.all-spots').css('top', previewTop);
 
     if(ionic.Platform.isIOS()){
     document.addEventListener("deviceready", letsDoMap, false);
     } else {
         letsDoMap();
     }
+
+    var showMap = localStorage.getItem('showMap');
+
+    $scope.hideMap = function () {
+
+             if($rootScope.currentRefine == 'Nearby'){
+             nearbyAjax.getSpots($rootScope.userLat, $rootScope.userLong, function (results) {
+                    $scope.Spots = results;
+                    $scope.loading = false;
+                    $scope.loadedMessage = 'Listing all ' + $scope.currentType + 's nearby';                 
+                });
+            }
+
+            $('#listMap').addClass('full-map');
+            $('.map-toggle').addClass('show-list');
+            $('.spots-list').show();
+            $('.map-preview').addClass('full-map');
+            $('.map-large').hide();
+            $('.map-list').show();
+            localStorage.setItem('showMap', false);
+        }
+
+     $scope.showMap = function () {
+            $('.map-toggle').removeClass('show-list');
+            $('#listMap').removeClass('full-map');
+            $ionicScrollDelegate.scrollTop();
+            localStorage.setItem('showMap', true);
+    }
+
+    if(showMap == 'true' || showMap == undefined) {
+        $scope.loadingMap = true;
+        $scope.showMap();
+    } else {
+        $scope.hideMap();
+    }
+
     
     function letsDoMap() {
+
+    $('#listMap').height($scope.appheight);
 
     if(navigator.splashscreen){
             setTimeout(function() {
@@ -172,11 +222,9 @@ angular.module('starter.controllers', [])
             userLong = position.coords.longitude;
             $rootScope.userLat = userLat;
             $rootScope.userLong = userLong;
-                nearbyAjax.getSpots(userLat, userLong, function (results) {
-                    $scope.Spots = results;
-                    $scope.loading = false;
-                    $scope.loadedMessage = 'All ' + $scope.currentType + 's nearby loaded';                 
-                });
+            if(showMap == 'false') {
+                $scope.hideMap();
+            }
         }
         function error(err) {
 
@@ -189,7 +237,7 @@ angular.module('starter.controllers', [])
             fruitsFactory.getSpots($rootScope.currentRefine, function (results) {
                 $scope.Spots = results;
                 $scope.loading = false;
-                $scope.loadedMessage = 'All ' + $scope.currentType + 's in ' + $rootScope.currentRefine + ' loaded';
+                $scope.loadedMessage = 'Listing all ' + $scope.currentType + 's in ' + $rootScope.currentRefine
             });
         };
     } else {
@@ -200,7 +248,7 @@ angular.module('starter.controllers', [])
         fruitsFactory.getSpots($rootScope.currentRefine, function (results) {
             $scope.Spots = results;
             $scope.loading = false;
-            $scope.loadedMessage = 'All ' + $scope.currentType + 's in ' + $rootScope.currentRefine + ' loaded';
+            $scope.loadedMessage = 'Listing all ' + $scope.currentType + 's in ' + $rootScope.currentRefine;
         });
     }
     
@@ -210,6 +258,20 @@ angular.module('starter.controllers', [])
       
         // var myLatlng = new google.maps.LatLng(results.lat,results.long);
         // var state = $rootScope.currentRefine;
+
+        if(results.length == 0) {
+            //server must be down.
+             $ionicModal.fromTemplateUrl('my-modal.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+              }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+              });
+
+          
+          return true;
+        }
 
         var currentRefine = $rootScope.currentRefine;
         
@@ -225,22 +287,22 @@ angular.module('starter.controllers', [])
                         break;
                     case "NSW":
                         $scope.currentState = 'New South Wales';
-                        var mapZoom = 5;
-                        var mapCenter = new google.maps.LatLng(-34.0000, 147.0000);
+                        var mapZoom = 6;
+                        var mapCenter = new google.maps.LatLng(-34.0000, 149.0000);
                         break;
                     case "QLD":
                         $scope.currentState = 'Queensland';
-                        var mapZoom = 4;
-                         var mapCenter = new google.maps.LatLng(-23.0000, 43.0000);
+                        var mapZoom = 5;
+                         var mapCenter = new google.maps.LatLng(-23.0000, 146.0000);
                         break;
                     case "SA":
                         $scope.currentState = 'South Australia';
-                        var mapZoom = 4;
+                        var mapZoom = 5;
                         var mapCenter = new google.maps.LatLng(-32.0000, 135.0000);
                         break;
                     case "NT":
                         $scope.currentState = 'Northern Territory';
-                        var mapZoom = 4;
+                        var mapZoom = 5;
                         var mapCenter = new google.maps.LatLng(-22.0000, 133.0000);
                         break;
                     case "ACT":
@@ -250,12 +312,12 @@ angular.module('starter.controllers', [])
                         break;
                     case "TAS":
                         $scope.currentState = 'Tasmania';
-                        var mapZoom = 6;
+                        var mapZoom = 7;
                         var mapCenter = new google.maps.LatLng(-42.0000, 146.6000);
                         break;
                     case "WA":
                         $scope.currentState = 'Western Australia';
-                        var mapZoom = 4;
+                        var mapZoom = 5;
                         var mapCenter = new google.maps.LatLng(-26.0000, 121.0000);
                         break;
                     }
@@ -275,7 +337,7 @@ angular.module('starter.controllers', [])
             );
 
             // then create the new marker
-            marker = new google.maps.Marker({
+            userMarker = new google.maps.Marker({
                 flat: true,
                 icon: image,
                 map: map,
@@ -315,7 +377,7 @@ angular.module('starter.controllers', [])
             );
 
             // then create the new marker
-            marker = new google.maps.Marker({
+            userMarker = new google.maps.Marker({
                 flat: true,
                 icon: image,
                 map: map,
@@ -349,9 +411,14 @@ angular.module('starter.controllers', [])
         }
 
         $('.map-list').click(function () {
+
+
             $scope.$apply(function () {
                 $scope.mapPreview = null;
             })
+            $('.map-toggle').removeClass('show-list');
+
+            $('.spots-list').hide();
             $('.map-preview').removeClass('full-map');
             $('.map-list').hide();
             $('#listMap').removeClass('full-map');
@@ -359,22 +426,36 @@ angular.module('starter.controllers', [])
                 google.maps.event.trigger(map, "resize");
             }, 400);
             $('.map-large').show();
+            $ionicScrollDelegate.scrollTop();
+            localStorage.setItem('showMap', true);
+
         });
 
         $('.map-large').click(function () {
+
+            if($rootScope.currentRefine == 'Nearby'){
+             nearbyAjax.getSpots(userLat, userLong, function (results) {
+                    $scope.Spots = results;
+                    $scope.loading = false;
+                    $scope.loadedMessage = 'Listing all ' + $scope.currentType + 's nearby';                 
+                });
+            }
 
             $scope.$apply(function () {
                 $scope.mapPreview = null;
             })
 
             $('#listMap').addClass('full-map');
+            $('.map-toggle').addClass('show-list');
+            $('.spots-list').show();
             $('.map-preview').addClass('full-map');
             $('.map-large').hide();
             $('.map-list').show();
             setTimeout(function () {
                 google.maps.event.trigger(map, "resize");
             }, 400);
-
+            $ionicScrollDelegate.scrollTop();
+            localStorage.setItem('showMap', false);
         });
 
         google.maps.event.addListener(map, 'dragstart', function () {
@@ -394,6 +475,7 @@ angular.module('starter.controllers', [])
 
         $scope.getNearby = function () {
             $scope.loading = true;
+            $ionicScrollDelegate.scrollTop();
 
             $scope.$apply(function () {
                 $scope.mapPreview = null;
@@ -401,15 +483,6 @@ angular.module('starter.controllers', [])
 
             $('.refine-state').removeClass('active');
             $('.refine-nearby').addClass('active');
-
-            if ($rootScope.userLat && $rootScope.userLong) {
-                map.setZoom(12);
-                map.panTo(new google.maps.LatLng($rootScope.userLat, $rootScope.userLong));
-                nearbyAjax.getSpots($rootScope.userLat, $rootScope.userLong, function (results) {
-                    $scope.Spots = results;
-                    $scope.loading = false; 
-                });
-            } else {
 
                 if($scope.geoDenied){
                     $('.refine-state').addClass('active');
@@ -430,12 +503,16 @@ angular.module('starter.controllers', [])
                     nearbyAjax.getSpots(userLat, userLong, function (results) {
                         $scope.Spots = results;
                         $scope.loading = false; 
+                        if (userMarker){
+                            userMarker.setPosition(new google.maps.LatLng(userLat, userLong));
+                        }
+                        map.panTo(new google.maps.LatLng(userLat, userLong));
+                        map.setZoom(12);
                     });
 
                 }
-            }
             $rootScope.currentRefine = 'Nearby';
-            $rootScope.loadedMessage = 'All ' + $scope.currentType + 's nearby loaded';
+            $rootScope.loadedMessage = 'Listing all ' + $scope.currentType + 's nearby';
         }
 
 
@@ -483,25 +560,25 @@ angular.module('starter.controllers', [])
                     case 1:
                         $scope.currentState = 'New South Wales';
                         currentState = 'NSW';
-                        map.setZoom(5);
-                        map.panTo(new google.maps.LatLng(-34.0000, 147.0000));
+                        map.setZoom(6);
+                        map.panTo(new google.maps.LatLng(-34.0000, 149.0000));
                         break;
                     case 2:
                         $scope.currentState = 'Queensland';
                         currentState = 'QLD';
-                        map.setZoom(4);
-                        map.panTo(new google.maps.LatLng(-23.0000, 143.0000));
+                        map.setZoom(5);
+                        map.panTo(new google.maps.LatLng(-23.0000, 146.0000));
                         break;
                     case 3:
                         $scope.currentState = 'South Australia';
                         currentState = 'SA';
-                        map.setZoom(4);
+                        map.setZoom(5);
                         map.panTo(new google.maps.LatLng(-32.0000, 135.0000));
                         break;
                     case 4:
                         $scope.currentState = 'Northern Territory';
                         currentState = 'NT';
-                        map.setZoom(4);
+                        map.setZoom(5);
                         map.panTo(new google.maps.LatLng(-22.0000, 133.0000));
                         break;
                     case 5:
@@ -513,13 +590,13 @@ angular.module('starter.controllers', [])
                     case 6:
                         $scope.currentState = 'Tasmania';
                         currentState = 'TAS';
-                        map.setZoom(6);
+                        map.setZoom(7);
                         map.panTo(new google.maps.LatLng(-42.0000, 146.6000));
                         break;
                     case 7:
                         $scope.currentState = 'Western Australia';
                         currentState = 'WA';
-                        map.setZoom(4);
+                        map.setZoom(5);
                         map.panTo(new google.maps.LatLng(-26.0000, 121.0000));
                         break;
                     }
@@ -533,7 +610,7 @@ angular.module('starter.controllers', [])
                         $rootScope.currentRefine = currentState;
                         $scope.Spots = results;
                         $scope.loading = false;
-                        $scope.loadedMessage = 'All ' + $scope.currentType + 's in ' + $rootScope.currentRefine + ' loaded';
+                        $scope.loadedMessage = 'Listing all ' + $scope.currentType + 's in ' + $rootScope.currentRefine;
                     });
 
                     return true;
@@ -598,23 +675,6 @@ angular.module('starter.controllers', [])
             $http.get('http://www.skatespots.com.au/getfavourites.php?userid=' + fbid + '&favourite=' + favourite).success(callback);
         }  
     };
-})
-
-.controller('favouritesCtrl', function ($scope, $rootScope, favouriteFactory) {
-    var fbid = $rootScope.fbResponse.id;
-    $scope.loading = true;
-    $scope.nofav = false;
-    if (fbid) {
-        favouriteFactory.getSpots(fbid, function (results) {
-
-            if(results == 'no favourites'){
-                $scope.nofav = true;
-            }
-
-            $scope.favourites = results;
-            $scope.loading = false;
-        });
-    }
 })
 
 .factory('topFactory', function ($http) {  
@@ -997,10 +1057,6 @@ angular.module('starter.controllers', [])
 
     spotContentFactory.getParks(function (results) {
         $scope.spotsContent = results;
-        $scope.spotImages = results.images;
-        $scope.nearby = results.nearby;
-        $scope.nearbySibling = results.nearbySibling;
-        $scope.ratingRound = results.ratingRound;
         $scope.facebook = results.fb;
         $scope.showBody = true;
         $scope.loading = false;
@@ -1008,7 +1064,6 @@ angular.module('starter.controllers', [])
         $scope.slug = results.title.replace(/\s+/g, '-').toLowerCase();
         $scope.mapName = 'map-' + $scope.slug;
         $scope.address = results.address + ', ' + results.suburb + ', ' + results.state;
-
 
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -1124,7 +1179,7 @@ angular.module('starter.controllers', [])
         })
 
         // $scope.showComments = function () {
-        //     // if($rootScope.fbResponse){
+        //     // if(localStorage.getItem('fbID')){
         //     // $('#comments .btn_gold').hide();
         //     $ionicScrollDelegate.scrollBottom();
         //     $scope.loadingComments = true;
@@ -1147,8 +1202,8 @@ angular.module('starter.controllers', [])
         $scope.addToFavourites = function () {
             var favouriteName = $scope.spotsContent.title;
             var favouriteID = $scope.spotsContent.id;
-            if ($rootScope.fbResponse) {
-                var fbid = $rootScope.fbResponse.id;
+            if (localStorage.getItem('fbID')) {
+                var fbid = localStorage.getItem('fbID');
             }
             if (fbid) {
                 $ionicPopup.alert({
@@ -1187,6 +1242,8 @@ angular.module('starter.controllers', [])
                         text: 'SMS Address'
                     }, {
                         text: 'Copy Address'
+                    },{
+                        text: 'Facebook'
                     },
 
                 ],
@@ -1197,6 +1254,8 @@ angular.module('starter.controllers', [])
                 buttonClicked: function (index) {
                     var copyUrl = $scope.url;
                     var copyAddress = $scope.address;
+                    var copyTitle = $scope.spotsContent.title;
+                    var copyImage = $scope.spotsContent.images[0];
                     switch (index) {
                     case 0:
                         window.plugins.socialsharing.share(null, null, null, copyUrl);
@@ -1209,6 +1268,9 @@ angular.module('starter.controllers', [])
                         break;
                     case 3:
                         cordova.plugins.clipboard.copy(copyAddress);
+                        break;
+                    case 4:
+                        window.plugins.socialsharing.shareViaFacebook(copyTitle, copyImage /* img */, copyUrl /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)});
                         break;
                     }
                     return true;
@@ -1230,7 +1292,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('userCtrl', function ($scope, userFactory, $stateParams) {
+.controller('userCtrl', function ($scope, userFactory, favouriteFactory, $stateParams) {
 
     $scope.loading = true;
 
@@ -1246,6 +1308,28 @@ angular.module('starter.controllers', [])
         $scope.Parks = results.parks;
 
 
+        var fbid = localStorage.getItem('fbID');
+
+        if (fbid && fbid == $stateParams.userId) {
+            $scope.favButton = true;
+            $scope.toggleFav = function () {
+                $scope.showFav = true;
+                $scope.favLoading = true;
+                $scope.showParks = false;
+                $scope.showSpots = false;
+                favouriteFactory.getSpots(fbid, function (results) {
+
+                    if(results == 'no favourites'){
+                        $scope.nofav = true;
+                    }
+
+                    $scope.favourites = results;
+                    $scope.favLoading = false;
+                });
+            }
+        }
+
+
         if(results.parks == undefined && results.spots == undefined){
             $scope.noListings = true;
         }
@@ -1254,18 +1338,21 @@ angular.module('starter.controllers', [])
         $scope.toggleSpots = function () {
             $scope.showSpots = true;
             $scope.showParks = false;
+            $scope.showFav = false;
         }
 
         $scope.toggleParks = function () {
             $scope.showParks = true;
             $scope.showSpots = false;
+            $scope.showFav = false;
         }
 
         if (results.spots) {
             $scope.showSpots = true;
         } else if (results.parks) {
             $scope.showParks = true;
-
+        } else if (fbid && fbid == $stateParams.userId) {
+            $scope.toggleFav();
         }
 
         angular.element(document).ready(function () {

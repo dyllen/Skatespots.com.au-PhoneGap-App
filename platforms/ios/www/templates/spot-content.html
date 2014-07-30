@@ -12,7 +12,7 @@
         </button>
         <div class="showbody spot-content" ng-show="showBody">
          <ion-slide-box class="photo-slide">
-            <ion-slide ng-repeat="image in spotImages">
+            <ion-slide ng-repeat="image in spotsContent.images">
                 <img ng-click="openModal(image)" ng-src="{{image}}" alt="" title="">
             </ion-slide>
         </ion-slide-box>
@@ -36,7 +36,8 @@
             </div>
             <div class="spot_address_wrap" ng-click="copyAddress()">
              <div class="spot_address_center">
-                <p class="spot_address"><i class="ion-location map-location"></i><span>{{spotsContent.address}}, {{spotsContent.suburb}}, {{spotsContent.state}}</span></p>
+                <p class="spot_address"><i class="ion-location map-location"></i><span>{{spotsContent.address}}</span><br>
+                <span class="spot_sub">{{spotsContent.suburb}}, {{spotsContent.state}}</span></p>
                 </div>
             </div>
             <div data-tap-disabled="true">
@@ -48,11 +49,11 @@
                 </div>
                 <div class="list more-list">
                     <ion-slide-box class="nearby-slide">
-                        <ion-slide ng-repeat="Spot in nearby">
+                        <ion-slide ng-repeat="Spot in spotsContent.nearby">
                          <a class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
                            <i class="rank-icon"></i>
                             <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
-                            <h2>{{Spot.title}}</h2>
+                            <h2 ng-bind-html="Spot.title"></h2>
                             <p>{{Spot.distance}}</p>
                             <span class="btn_blue">Check it out</span>
                           </a>
@@ -66,11 +67,11 @@
                 </div>
                 <div class="list more-list">
                     <ion-slide-box class="nearby-slide">
-                        <ion-slide ng-repeat="Spot in nearbySibling">
+                        <ion-slide ng-repeat="Spot in spotsContent.nearbySibling">
                             <a class="item item-thumbnail-left" href="#/app/playlists/{{Spot.id}}">
                                <i class="rank-icon"></i>
                                 <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
-                                <h2>{{Spot.title}}</h2>
+                                <h2 ng-bind-html="Spot.title"></h2>
                                 <p>{{Spot.distance}}</p>
                                 <span class="btn_blue">Check it out</span>
                               </a>
@@ -106,5 +107,17 @@
               </ion-content>
             </div>
           </script>
+
+        <script id="server-error.html" type="text/ng-template">
+          <div class="modal">
+            <ion-header-bar>
+              <h1 class="title">Skatespots.com.au is under heavy load at the moment, sorry. Please try again in a few minutes</h1>
+            </ion-header-bar>
+            <ion-content>
+              Hello!
+            </ion-content>
+          </div>
+        </script>
+
     </ion-content>
 </ion-view>

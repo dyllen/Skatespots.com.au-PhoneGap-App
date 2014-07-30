@@ -36839,6 +36839,8 @@ function($cacheFactory, $parse, $rootScope) {
         item.scope.$middle = !(item.scope.$first || item.scope.$last);
         item.scope.$odd = !(item.scope.$even = (index&1) === 0);
 
+        item.element.addClass('visible');
+
         //We changed the scope, so digest if needed
         if (!$rootScope.$$phase) {
           item.scope.$digest();

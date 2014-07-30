@@ -1,5 +1,50 @@
-.spots-list {
-	padding: 10px;
+.error-text {
+background: rgba(255,255,255,0.8);
+text-align: center;
+padding: 15px;
+margin: 13% 15px 0 15px;
+}
+
+.modal.error-modal.slide-in-up.ng-enter-active {
+  background: url(../img/error-bg.jpg);
+  background-size: cover;
+}
+
+.error-modal .btn_blue {
+  width: 100%;
+  font-size: 16px;
+  padding: 11px 0;
+  margin: 14px 0 0 0;
+}
+
+.spot-list .list {
+  top: 60px;
+}
+
+.spot-list .loader {
+  margin-top: 70px;
+}
+
+.spots-list a.item, .favourites a.item, .user_page .user-spots.list a.item{
+  opacity: 0;
+  margin: 15px;
+  left: 0;
+  right: 0;
+  transition:opacity 2s ease-in-out;
+}
+
+.favourites a.item, .user_page .user-spots.list a.item {
+  opacity: 1;
+  margin: 15px;
+}
+
+.spots-list a.item.visible {
+  opacity: 1;
+}
+
+.spot-list a.item .btn_blue, .spots-list a.item .btn_blue {
+  width: 100%;
+  text-align: center;
 }
 
 .menu {
@@ -614,6 +659,10 @@ right: 10px;
 top: -50px;
 }
 
+.user-buttons .button {
+  font-size: 14px;
+}
+
 .user_page h3 {
   color: #37404e;
   font-weight: 900;
@@ -647,10 +696,6 @@ margin: 15px 0;
 
 .user_inner p.bio {
   margin-top: 15px;
-}
-
-.user_page .button-bar.listings .button{
-  border-bottom: none;
 }
 
 .input-label {
@@ -772,7 +817,7 @@ left: 0;
   font-size: 20px;
 }
 
-.leaderboard .rank-icon {
+.leaderboard .rank-icon, .topspots a.item::before{
  padding: 0 5px 0 7px;
   margin: 15px 10px 0 0;
   float: left;
@@ -795,7 +840,7 @@ left: 0;
   right: 5px;
 }
 
-.leaderboard .item:nth-of-type(10) .rank-icon {
+.leaderboard .item:nth-of-type(10) .rank-icon, .topspots a.item:nth-of-type(10):before {
   margin-left: -8px;
 }
 
@@ -811,11 +856,18 @@ left: 0;
   font-size: 11px;
 }
 
+.topspots a.item {
+  margin: 15px 15px 15px 35px;
+}
+
 .topspots a.item:first-child {
   padding-left:0;
 padding-right: 0;
 padding-top: 0;
 text-align:center;
+margin: 0;
+border-left: none;
+border-right: none;
 }
 
 .topspots a.item:first-child .btn_blue {
@@ -823,6 +875,12 @@ text-align:center;
   display: block;
   margin: 0 15px;
   box-sizing: border-box;
+  width: auto;
+}
+
+.topspots a.item .btn_blue {
+  width: 100%;
+  text-align: center;
 }
 
 .topspots a.item:first-child:before{
@@ -830,37 +888,38 @@ content: "1";
 display: inline-block;
 position: absolute;
 left: 15px;
-top: 15px;
-background: black;
+top: 0;
+background: white;
 padding: 5px;
 width: 50px;
 height: 50px;
-border: 1px solid black;
 z-index: 100;
-border-radius: 100px;
-color: white;
+border-radius: 11px;
+color: #666;
 font-size: 30px;
-font-weight: 700;
-padding-top: 12px;
+padding-top: 15px;
+}
+
+.topspots a.item:nth-child(n+2) {
+  overflow: visible;
+  height: 121px;
 }
 
 .topspots a.item:nth-child(n+2):before{
-  display: inline-block;
+padding: 0 5px 0 7px;
+margin: 15px 10px 0 0;
+color: #666;
+float: none;
 position: absolute;
-left: 5px;
-top: 5px;
-background: black;
-padding: 5px;
-width: 35px;
-height: 35px;
-border: 1px solid black;
-z-index: 100;
-border-radius: 100px;
-color: white;
-font-size: 20px;
-font-weight: 700;
-padding-top: 5px;
-text-align: center;
+left: -29px;
+top: 31px;
+z-index: 10000;
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+}
+
+.topspots a.item:nth-child(10):before{
+left: -35px;
 }
 
 .topspots a.item:nth-child(2):before{
@@ -962,54 +1021,35 @@ font-size: 30px;
 }
 
 .spot_address {
-padding: 3px 15px;
-line-height: 14px;
+padding: 9px 15px;
 background: white;
-margin: 0 auto;
-position: relative;
 border: 1px solid lightgrey;
-max-width: 300px;
-display: table;
-max-width: 320px
+display: block;
+width: 100%;
+line-height: 8px;
 }
 
 .spot_address span {
  display: table-cell;
 vertical-align: middle;
 text-align: left;
+font-size: 14px;
+text-transform: capitalize;
 }
 
-.spot_address:after, .spot_address:before {
-  top: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.spot_address:after {
-  border-color: rgba(255, 255, 255, 0);
-  border-top-color: #ffffff;
-  border-width: 10px;
-  margin-left: -10px;
-}
-.spot_address:before {
-  border-color: rgba(221, 221, 221, 0);
-  border-top-color: #ddd;
-  border-width: 11px;
-  margin-left: -11px;
+.spot_address span.spot_sub {
+  color: grey;
+  font-size: 12px;
 }
 
 .ion-location.map-location {
 border-radius: 100px;
 text-align: center;
-font-size: 25px;
+font-size: 30px;
 position: relative;
-margin-right: 7px;
+margin-right: 10px;
 float: left;
+top: -3px;
 }
 
 .loading-map-cnt {
@@ -1023,7 +1063,7 @@ float: left;
 .loading-map-cnt .loading-map {
   margin: 0 auto;
   display: block;
-  width: 130px;
+  width: 150px;
   float: none;
   background: white;
   padding: 15px;
@@ -1342,16 +1382,45 @@ div.cluster {
 
 #listMap.full-map {
   position: absolute !important;
-  height: 600px !important;
   width: 100% !important;
-  top: 0;
+  top: -2000px;
   z-index: 1000;
 }
 
-.map-list, .map-large {
-  font-size: 15px;
+.list-head {
   position: absolute;
-  right: 10px;
+  left: 15px;
+  top: 56px;
+  font-size: 16px;
+  color: grey;
+}
+.map-toggle {
+  background: none;
+  padding: 10px;
+  float: left;
+  width:100%;
+  margin-top: 4px;
+}
+
+.map-toggle.show-list {
+ background: url(../img/show-map-bg.jpg) center left no-repeat;
+  background-size:cover;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top:none
+}
+
+.map-toggle span {
+  font-size: 12px;
+position: relative;
+top: -3px;
+margin-right: 3px;
+}
+
+.map-list, .map-large {
+  min-width: 39px;
+  text-align: center;
+  font-size: 15px;
   z-index: 1500;
   background: #f4f4f4;
   padding: 7px 10px;
@@ -1363,6 +1432,11 @@ div.cluster {
   -webkit-box-shadow: inset 0px 1px 0 0 #dee6e8, 0px 1px 0px 1px #b7b8b8;
   cursor: pointer;
   text-decoration: none;
+  float: right;
+}
+
+.refine_bar .map-list i, .refine_bar .map-large i {
+  margin-right: 0;
 }
 
 .map-list {
@@ -1383,12 +1457,8 @@ div.list.map-preview {
 }
 
 div.list.map-preview.all-spots {
-  top: 0;
-}
-
-div.list.map-preview.all-spots.full-map {
-  top: 170px;
   padding: 0 15px;
+  margin-top: 0;
 }
 
 div.list.map-preview.all-spots.full-map a.item{
@@ -1461,17 +1531,4 @@ div.list.map-preview:before {
   border-top-color: #ddd;
   border-width: 11px;
   margin-left: -11px;
-}
-
-.loader {
-color: black;
-background: white;
-border-radius: 3px;
--webkit-border-radius: 3px;
--webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px 0px;
-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px 0px;
-padding: 10px 0;
-box-sizing: border-box;
-margin: 0 15px;
-text-align: center;
 }
