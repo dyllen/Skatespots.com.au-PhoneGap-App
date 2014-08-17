@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -602,7 +601,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
+				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};
@@ -643,7 +642,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "17A242C5-FC2B-4853-AC38-E108B66541C3";
+				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7s armv7";
 			};

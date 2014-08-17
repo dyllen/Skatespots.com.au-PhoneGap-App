@@ -3,6 +3,11 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button ng-click="sortResults()" class="button button-icon icon ion-levels"></button>
+  </ion-nav-buttons>
+
   <div class="bar bar-subheader refine_bar">
         <div class="button-bar">
           <a class="button refine-state" ng-click="selectState()">{{currentState}}</a>
@@ -12,7 +17,6 @@
   <div class="map-list"><span>show map</span> <i class="ion-map"></i></div>
   <div class="map-large" ng-hide="loadingMap"><i class="ion-android-drawer"></i>
   </div>
-
     </div>
 </div>
   <ion-content class="has-header has-subheader spot-list" data-ng-init="getNearby()">
@@ -39,7 +43,7 @@
       <i class="icon ion-loading-c"></i>
     </button>
     <ion-list class="spots-list">
-    <a class="item item-thumbnail-left" collection-repeat="Spot in Spots" collection-item-width="'100%'" collection-item-height="130" href="#/app/playlists/{{Spot.id}}">
+    <a class="item item-thumbnail-left" collection-repeat="Spot in Spots | orderBy:predicate" collection-item-width="'100%'" collection-item-height="130" href="#/app/playlists/{{Spot.id}}">
        <i class="rank-icon"></i>
         <div class="preview-img" style="background:url({{Spot.thumbnail}}) center center; background-size: cover;"></div>
         <h2 ng-bind-html="Spot.title"></h2>

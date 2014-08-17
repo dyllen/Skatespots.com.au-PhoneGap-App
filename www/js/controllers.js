@@ -154,8 +154,55 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     $scope.currentType = $stateParams.spotType;
     $scope.currentState = 'Select a state';
+
+    if( localStorage.getItem('predicate') ) {
+        $scope.predicate = localStorage.getItem('predicate');
+
+    } else {
+        $scope.predicate = '';
+    }
     
     $scope.appheight = $('.spot-list').height();
+
+    $scope.sortResults = function () {
+
+            $ionicActionSheet.show({
+                titleText: 'Order By',
+                buttons: [{
+                    text: 'Name'
+                },{
+                    text: 'Date'
+                },{
+                    text: 'Rating'
+                }
+                ],
+                cancelText: 'Cancel',
+                cancel: function () {
+                    console.log('CANCELLED');
+                },
+                buttonClicked: function (index) {
+            
+                    switch (index) {
+                    case 0:
+                        $scope.predicate = 'title';
+                        localStorage.setItem('predicate', 'title');
+                        break;
+                    case 1:
+                        $scope.predicate = '-date';
+                        localStorage.setItem('predicate', '-date');
+                        break;
+                    case 2:
+                        $scope.predicate = '-rating';
+                        localStorage.setItem('predicate', '-rating');
+                        break;
+                    }
+                    $ionicScrollDelegate.scrollTop();
+
+
+                    return true;
+                }
+            });
+        };
 
 
     var previewTop = $scope.appheight / 2 - 127;
@@ -185,6 +232,7 @@ angular.module('starter.controllers', [])
             $('.map-preview').addClass('full-map');
             $('.map-large').hide();
             $('.map-list').show();
+            $('.order-list').show();
             localStorage.setItem('showMap', false);
         }
 
@@ -421,6 +469,7 @@ angular.module('starter.controllers', [])
             $('.spots-list').hide();
             $('.map-preview').removeClass('full-map');
             $('.map-list').hide();
+            $('.order-list').hide();
             $('#listMap').removeClass('full-map');
             setTimeout(function () {
                 google.maps.event.trigger(map, "resize");
@@ -451,6 +500,7 @@ angular.module('starter.controllers', [])
             $('.map-preview').addClass('full-map');
             $('.map-large').hide();
             $('.map-list').show();
+            $('.order-list').show();
             setTimeout(function () {
                 google.maps.event.trigger(map, "resize");
             }, 400);
@@ -474,6 +524,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.getNearby = function () {
+            $scope.predicate = '';
             $scope.loading = true;
             $ionicScrollDelegate.scrollTop();
             $scope.Spots = null;
@@ -1058,6 +1109,7 @@ angular.module('starter.controllers', [])
         $scope.facebook = results.fb;
         $scope.showBody = true;
         $scope.loading = false;
+        $scope.mapPreview = true;
         $scope.url = results.url;
         $scope.slug = results.title.replace(/\s+/g, '-').toLowerCase();
         $scope.mapName = 'map-' + $scope.slug;
@@ -1086,6 +1138,73 @@ angular.module('starter.controllers', [])
 
         if (results.fb) {
             $scope.fbImage = 'http://graph.facebook.com/' + results.fb.fbID + '/picture?width=40&height=40';
+        }
+
+        $scope.mapModal = function(lat,long){
+            $ionicModal.fromTemplateUrl('large-map.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+              }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+
+            var mapOptions = {
+                center: new google.maps.LatLng(lat, long),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false,
+                zoom: 14,
+                disableDefaultUI: true,
+                streetViewControl: false,
+                mapTypeControl: false
+            };
+
+            var modalHeight = $('.modal .scroll').height();
+
+            var previewTop = modalHeight / 2 - 157;
+            $('div.list.map-preview.large-map').css('top', previewTop);
+
+            $('#full-map').height(modalHeight);
+
+            var myLatlng = new google.maps.LatLng(lat, long);
+            var map = new google.maps.Map(document.getElementById('full-map'),
+                mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+             google.maps.event.addListener(marker, 'click', (function (marker) {
+                return function () {
+                    map.setCenter(marker.getPosition());
+                    $scope.$apply(function () {
+                        $scope.mapPreview = true;
+                    })
+                }
+            })(marker));
+
+            google.maps.event.addListener(map, 'dragstart', function () {
+                $scope.$apply(function () {
+                    $scope.mapPreview = null;
+                })
+            });
+
+
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+                $scope.$apply(function () {
+                    $scope.mapPreview = null;
+                })
+            });
+
+
+            $scope.largeMap = map;
+
+
+              });
+
+            $scope.closeModal = function () {
+            $scope.modal.remove();
+            }
         }
 
 
@@ -1155,7 +1274,8 @@ angular.module('starter.controllers', [])
                 disableDefaultUI: true,
                 streetViewControl: false,
                 mapTypeControl: false,
-                draggable: false
+                draggable: false,
+                disableDoubleClickZoom: true
             };
             var myLatlng = new google.maps.LatLng(results.lat, results.long);
             var map = new google.maps.Map(document.getElementById($scope.mapName),
@@ -1282,18 +1402,50 @@ angular.module('starter.controllers', [])
 .factory('userFactory', function ($http, $stateParams) {  
     return {
         getUser: function (callback) {      
-            $http.get('http://skatespots.com.au/getuser.php?userid=' + $stateParams.userId, {
-                cache: true
-            }).success(callback);    
+            $http.get('http://skatespots.com.au/getuser.php?userid=' + $stateParams.userId).success(callback);    
         }  
     };
 })
 
 
-.controller('userCtrl', function ($scope, userFactory, favouriteFactory, $stateParams) {
+.controller('userCtrl', function ($scope, userFactory, favouriteFactory, $stateParams, $ionicModal, $http) {
 
     $scope.loading = true;
 
+    $ionicModal.fromTemplateUrl('user-config.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+
+        $scope.updateUser = function() {
+            var website = $scope.formValues.website;
+            var bio = $scope.formValues.bio;
+            var state = $scope.formValues.state;
+
+            var url = 'http://www.skatespots.com.au/updateuser.php?userid='+$scope.id+'+&bio='+bio+'&website='+website+'&state='+state;
+
+            $http.get(url).success( function() {
+                $scope.website = website;
+                $scope.bio = bio;
+                $scope.state = state;
+                StatusBar.styleLightContent();
+            }); 
+
+            $scope.modal.hide();
+        }
+
+        $scope.showModal = function () {
+                StatusBar.styleDefault();
+                $scope.modal.show();
+            }
+
+        $scope.closeModal = function () {
+            StatusBar.styleLightContent();
+            $scope.modal.hide();
+        }
+
+      });
     userFactory.getUser(function (results) {
         $scope.loading = false;
         $scope.name = results.user;
@@ -1305,6 +1457,7 @@ angular.module('starter.controllers', [])
         $scope.Spots = results.spots;
         $scope.Parks = results.parks;
 
+        $scope.formValues = {website: $scope.website, bio: $scope.bio , state: $scope.state};
 
         var fbid = localStorage.getItem('fbID');
 

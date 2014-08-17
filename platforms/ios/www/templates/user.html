@@ -2,6 +2,9 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-show="favButton" class="button button-icon icon ion-gear-a" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
   <ion-content class="has-header user_page">
     <button ng-show="loading" class="button button-full button-light">
     <i class="icon ion-loading-c"></i>
@@ -68,5 +71,41 @@
       <div class="no-favourites" ng-show="nofav">you haven't added any favourites</div>
     </div>
   	</div>
+
+  <script id="user-config.html" type="text/ng-template">
+    <div class="modal user-modal">
+      <ion-header-bar>
+      <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        <h1 class="title">EDIT PROFILE</h1>
+        <button class="button button-clear button-positive" ng-click="updateUser()">Done</button>
+      </ion-header-bar>
+      <ion-content>
+       <div class="list card">
+        <div class="item item-icon-left">
+          <i class="icon ion-earth"></i>
+          <input type="text" placeholder="Website" ng-model="formValues.website">
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon ion-ios7-information"></i>
+          <textarea placeholder="Bio" ng-model="formValues.bio"></textarea>
+        </div>
+      <label class="item item-input item-select item-icon-left">
+          <i class="icon ion-location"></i>
+          <select ng-model="formValues.state">
+              <option>Victoria</option>
+              <option>New South Wales</option>
+              <option>Australian Capital Territory</option>
+              <option>Queensland</option>
+              <option>Tasmania</option>
+              <option>Western Australia</option>
+              <option>South Australia</option>
+              <option>Northern Territory</option>
+            </select>
+      </label>
+      </div>
+      </ion-content>
+    </div>
+  </script>
+
   </ion-content>
 </ion-view>

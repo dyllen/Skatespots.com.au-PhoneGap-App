@@ -8,7 +8,7 @@
             <i class="icon ion-loading-c"></i>
         </button>
         <button ng-show="uploading" class="button button-full button-light">
-            <i class="icon ion-loading-c"></i> Uplading Photo
+            <i class="icon ion-loading-c"></i> Uploading Photo
         </button>
         <div class="showbody spot-content" ng-show="showBody">
          <ion-slide-box class="photo-slide">
@@ -34,7 +34,8 @@
                     <p>{{facebook.user}}</p>
                 </a>
             </div>
-            <div class="spot_address_wrap" ng-click="copyAddress()">
+            <div id="spot-map" ng-click="mapModal(spotsContent.lat, spotsContent.long)">
+            <div class="spot_address_wrap">
              <div class="spot_address_center">
                 <p class="spot_address"><i class="ion-location map-location"></i><span>{{spotsContent.address}}</span><br>
                 <span class="spot_sub">{{spotsContent.suburb}}, {{spotsContent.state}}</span></p>
@@ -42,6 +43,7 @@
             </div>
             <div data-tap-disabled="true">
             <div id="{{mapName}}" style="width:100%; height:200px;"></div>
+            </div>
             </div>
             <div class="nearby nearby-first">
                 <div class="nearby-header">
@@ -108,13 +110,20 @@
             </div>
           </script>
 
-        <script id="server-error.html" type="text/ng-template">
+        <script id="large-map.html" type="text/ng-template">
           <div class="modal">
             <ion-header-bar>
-              <h1 class="title">Skatespots.com.au is under heavy load at the moment, sorry. Please try again in a few minutes</h1>
+              <h1 class="title">Large Map</h1>
+            <button class="button button-clear button-positive" ng-click="closeModal()">Done</button>
             </ion-header-bar>
             <ion-content>
-              Hello!
+            <div class="list map-preview large-map" ng-click="openURL(directionsUrl)" ng-show="mapPreview">
+              <a class="item item-avatar" href="#/app/playlists/1372">
+                <h2>{{spotsContent.address}}</h2>
+                <p>{{spotsContent.suburb}}, {{spotsContent.state}}</p>
+              </a>
+          </div>
+              <div data-tap-disabled="true" id="full-map" height="320px" width="100%"></div>
             </ion-content>
           </div>
         </script>
