@@ -10,29 +10,29 @@
 	<string>Skatespots.com.au</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8A8F6FAB-9DAC-4A1E-8F89-25967BC98CFE</key>
+		<key>1426F6C095F323C392619BC3E4FBB24D41686BF0</key>
 		<string>https://github.com/dyllen/Skatespots.com.au-PhoneGap-App.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/Skatespots.com.au.xcodeproj/project.xcworkspace</string>
+	<string>platforms/ios/Skatespots.com.au.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8A8F6FAB-9DAC-4A1E-8F89-25967BC98CFE</key>
+		<key>1426F6C095F323C392619BC3E4FBB24D41686BF0</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dyllen/Skatespots.com.au-PhoneGap-App.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8A8F6FAB-9DAC-4A1E-8F89-25967BC98CFE</string>
+	<string>1426F6C095F323C392619BC3E4FBB24D41686BF0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8A8F6FAB-9DAC-4A1E-8F89-25967BC98CFE</string>
+			<string>1426F6C095F323C392619BC3E4FBB24D41686BF0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Skatespots.com.au-PhoneGap-App</string>
 		</dict>

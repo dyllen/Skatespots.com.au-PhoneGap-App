@@ -25,16 +25,16 @@ angular.module('starter.controllers', [])
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
-        try {
-            FB.init({
-                appId: "267591593342063",
-                nativeInterface: CDV.FB,
-                useCachedDialogs: false,
-                xfbml: true // parse XFBML
-            });
-        } catch (e) {
-            alert(e);
-        }
+        // try {
+        //     FB.init({
+        //         appId: "267591593342063",
+        //         nativeInterface: CDV.FB,
+        //         useCachedDialogs: false,
+        //         xfbml: true // parse XFBML
+        //     });
+        // } catch (e) {
+        //     alert(e);
+        // }
 
         $scope.fbLogOut = function () {
             FB.logout(function (response) {
@@ -44,9 +44,12 @@ angular.module('starter.controllers', [])
             });
         }
 
+        console.log('this is fb', facebookConnectPlugin);
+
         $scope.fbLogin = function () {
             $scope.signinLoader = true;
-            FB.login(function (response) {
+            facebookConnectPlugin.login(["email"],function (response) {
+
             var accesstoken = response.authResponse.accessToken;
 
             $http.get('http://www.skatespots.com.au/getlogin.php?accesstoken=' + accesstoken, {
@@ -54,7 +57,7 @@ angular.module('starter.controllers', [])
             });    
                 if (response.authResponse) {
 
-                    FB.api('/me', function (response) {
+                    facebookConnectPlugin.api('/me',["email"], function (response) {
                         var userPage = "/app/user/" + response.id;
                         $scope.$apply(function () {
                             $scope.fbResponse = response;
@@ -74,8 +77,8 @@ angular.module('starter.controllers', [])
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
                 }
-            }, {
-                scope: 'email,user_likes'
+            }, function(error, er){
+                console.log('its an error',error);
             });
         }
     }
@@ -154,13 +157,7 @@ angular.module('starter.controllers', [])
     $scope.loading = true;
     $scope.currentType = $stateParams.spotType;
     $scope.currentState = 'Select a state';
-
-    if( localStorage.getItem('predicate') ) {
-        $scope.predicate = localStorage.getItem('predicate');
-
-    } else {
-        $scope.predicate = '';
-    }
+    $scope.predicate = '';
     
     $scope.appheight = $('.spot-list').height();
 
@@ -266,6 +263,14 @@ angular.module('starter.controllers', [])
         $rootScope.currentRefine = 'Nearby';
         navigator.geolocation.getCurrentPosition(setLocation, error);
         function setLocation(position) {
+
+
+            if( !localStorage.getItem('firstLoad') ){
+                localStorage.setItem('firstLoad', 'true');
+                location.reload();
+            }
+
+
             userLat = position.coords.latitude;
             userLong = position.coords.longitude;
             $rootScope.userLat = userLat;
@@ -291,8 +296,7 @@ angular.module('starter.controllers', [])
     } else {
         $('.refine-state').addClass('active');
         $('.refine-nearby').removeClass('active');
-        $rootScope.currentRefine = currentState;
-
+    
         fruitsFactory.getSpots($rootScope.currentRefine, function (results) {
             $scope.Spots = results;
             $scope.loading = false;
@@ -681,13 +685,13 @@ angular.module('starter.controllers', [])
                 isLoad = true;
 
                 var markerCluster = new MarkerClusterer(map, markers, {
-                    gridSize: 30,
+                    gridSize: 35,
                     styles: [{
-                        textColor: "black",
+                        textColor: "white",
                         height: 33,
                         url: "http://www.skatespots.com.au/wp-content/themes/skatespots/images/cluster_icon.png",
                         width: 38,
-                        textSize: 14
+                        textSize: 13
                     }]
 
                 });
@@ -1109,11 +1113,12 @@ angular.module('starter.controllers', [])
         $scope.facebook = results.fb;
         $scope.showBody = true;
         $scope.loading = false;
-        $scope.mapPreview = true;
         $scope.url = results.url;
         $scope.slug = results.title.replace(/\s+/g, '-').toLowerCase();
         $scope.mapName = 'map-' + $scope.slug;
         $scope.address = results.address + ', ' + results.suburb + ', ' + results.state;
+        $scope.mapImage = "http://maps.googleapis.com/maps/api/staticmap?center="+results.lat+","+results.long+"&scale=2&zoom=14&size=340x200&maptype=roadmap&markers=color:red%7C"+results.lat+","+results.long;
+
 
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -1158,7 +1163,7 @@ angular.module('starter.controllers', [])
                 mapTypeControl: false
             };
 
-            var modalHeight = $('.modal .scroll').height();
+            var modalHeight = $('.spots-view.scroll-content').height();
 
             var previewTop = modalHeight / 2 - 157;
             $('div.list.map-preview.large-map').css('top', previewTop);
@@ -1174,36 +1179,13 @@ angular.module('starter.controllers', [])
                 map: map
             });
 
-             google.maps.event.addListener(marker, 'click', (function (marker) {
-                return function () {
-                    map.setCenter(marker.getPosition());
-                    $scope.$apply(function () {
-                        $scope.mapPreview = true;
-                    })
-                }
-            })(marker));
-
-            google.maps.event.addListener(map, 'dragstart', function () {
-                $scope.$apply(function () {
-                    $scope.mapPreview = null;
-                })
-            });
-
-
-            google.maps.event.addListener(map, 'zoom_changed', function () {
-                $scope.$apply(function () {
-                    $scope.mapPreview = null;
-                })
-            });
-
-
             $scope.largeMap = map;
 
 
               });
 
-            $scope.closeModal = function () {
-            $scope.modal.remove();
+            $scope.closeMap = function () {
+                $scope.modal.remove();
             }
         }
 
@@ -1266,33 +1248,33 @@ angular.module('starter.controllers', [])
                 })
             });
 
-            var mapOptions = {
-                center: new google.maps.LatLng(results.lat, results.long),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false,
-                zoom: 14,
-                disableDefaultUI: true,
-                streetViewControl: false,
-                mapTypeControl: false,
-                draggable: false,
-                disableDoubleClickZoom: true
-            };
-            var myLatlng = new google.maps.LatLng(results.lat, results.long);
-            var map = new google.maps.Map(document.getElementById($scope.mapName),
-                mapOptions);
+            // var mapOptions = {
+            //     center: new google.maps.LatLng(results.lat, results.long),
+            //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+            //     scrollwheel: false,
+            //     zoom: 14,
+            //     disableDefaultUI: true,
+            //     streetViewControl: false,
+            //     mapTypeControl: false,
+            //     draggable: false,
+            //     disableDoubleClickZoom: true
+            // };
+            // var myLatlng = new google.maps.LatLng(results.lat, results.long);
+            // var map = new google.maps.Map(document.getElementById($scope.mapName),
+            //     mapOptions);
 
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: results.address
-            });
+            // var marker = new google.maps.Marker({
+            //     position: myLatlng,
+            //     map: map,
+            //     title: results.address
+            // });
 
-            var infowindow = new google.maps.InfoWindow({
-                content: results.addressFull,
-                maxWidth: 125
-            });
+            // var infowindow = new google.maps.InfoWindow({
+            //     content: results.addressFull,
+            //     maxWidth: 125
+            // });
 
-            $scope.map = map;
+            // $scope.map = map;
 
         })
 
@@ -1313,6 +1295,11 @@ angular.module('starter.controllers', [])
 
 
         $scope.openURL = function (urlString) {
+
+            if($scope.modal){
+                $scope.modal.remove();
+            }
+
             myURL = encodeURI(urlString);
             window.open(myURL, '_system');
         }
@@ -1597,7 +1584,7 @@ angular.module('starter.controllers', [])
 
                     var markerCluster = new MarkerClusterer(map, markers, {
                         styles: [{
-                            textColor: "black",
+                            textColor: "white",
                             height: 33,
                             url: "http://www.skatespots.com.au/wp-content/themes/skatespots/images/cluster_icon.png",
                             width: 38,

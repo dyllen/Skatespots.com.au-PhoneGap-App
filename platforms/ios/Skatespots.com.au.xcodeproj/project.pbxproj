@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -29,14 +30,15 @@
 		3BF8C09187514A6E992C7E4A /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE2BE00E134788B28DEACA /* CDVDevice.m */; };
 		3C7BDC1E948641BDA2390B81 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB04BE04B9644B0BF3534EC /* CDVInAppBrowser.m */; };
 		4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */; };
+		4355957F19FFB70400D5E1F5 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EDF2B19F3B9B900D81201 /* FacebookSDK.framework */; };
 		437B979A1967BF8800BBF68A /* CDVClipboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B97991967BF8800BBF68A /* CDVClipboard.m */; };
-		437B979D1967BFAC00BBF68A /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B979C1967BFAC00BBF68A /* CDVLocation.m */; };
 		437B97A51967C56200BBF68A /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 437B97A41967C56200BBF68A /* SocialSharing.m */; };
-		43BEA1971906C399005BA4CC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BEA1961906C399005BA4CC /* FacebookSDK.framework */; };
-		43BEA19B1906C3A9005BA4CC /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 43BEA19A1906C3A9005BA4CC /* FacebookConnectPlugin.m */; };
+		439EE3B819FFB35200E60476 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 439EE3B719FFB35200E60476 /* FacebookConnectPlugin.m */; };
+		43F2D6EC19ED385C006AACBC /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F2D6EB19ED385C006AACBC /* CDVLocation.m */; };
+		43F2D6EE19ED3A41006AACBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		45A9609EDC97412D8B47EC06 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FA4E870EE94911ABDEC89F /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4F76488CBBC946998BF82BC4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DFCEDD7074E558182F4F9 /* libsqlite3.dylib */; };
-		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
+		57B1A4DE944447A88F1C50D7 /* CanOpen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB776A17EB94906B03484BE /* CanOpen.m */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		6EBC97165ADF4668950476B3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA78FCD5D22493D8AEF6D7D /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		77074139123346DC97C02F43 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31914A14A2A34598B081D41E /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -50,7 +52,6 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
-		82DD026B418148F5BC0FF2F1 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8055C34E48E64CFDA301F6D2 /* FacebookSDK.framework */; };
 		8A5ACECBD17D435BBA433D22 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC6B51D35448DAB122E4C5 /* CDVSplashScreen.m */; };
 		91FE39763BB64B69B8687E83 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
@@ -105,18 +106,21 @@
 		31914A14A2A34598B081D41E /* AdSupport.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Skatespots.com.au-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Skatespots.com.au-Prefix.pch"; sourceTree = "<group>"; };
 		38207D38E26D4904AC21ECEB /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = org.apache.cordova.splashscreen/CDVSplashScreen.h; sourceTree = "<group>"; };
+		430EDF2B19F3B9B900D81201 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		437B97981967BF8800BBF68A /* CDVClipboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVClipboard.h; path = com.verso.cordova.clipboard/CDVClipboard.h; sourceTree = "<group>"; };
 		437B97991967BF8800BBF68A /* CDVClipboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVClipboard.m; path = com.verso.cordova.clipboard/CDVClipboard.m; sourceTree = "<group>"; };
-		437B979B1967BFAC00BBF68A /* CDVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLocation.h; path = org.apache.cordova.geolocation/CDVLocation.h; sourceTree = "<group>"; };
-		437B979C1967BFAC00BBF68A /* CDVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = org.apache.cordova.geolocation/CDVLocation.m; sourceTree = "<group>"; };
 		437B97A31967C56200BBF68A /* SocialSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialSharing.h; path = "nl.x-services.plugins.socialsharing/SocialSharing.h"; sourceTree = "<group>"; };
 		437B97A41967C56200BBF68A /* SocialSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocialSharing.m; path = "nl.x-services.plugins.socialsharing/SocialSharing.m"; sourceTree = "<group>"; };
+		439EE3B619FFB35200E60476 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookConnectPlugin.h; path = "../../../../phonegap-facebook-plugin-master/platforms/ios/HelloCordova/Plugins/com.phonegap.plugins.facebookconnect/FacebookConnectPlugin.h"; sourceTree = "<group>"; };
+		439EE3B719FFB35200E60476 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookConnectPlugin.m; path = "../../../../phonegap-facebook-plugin-master/platforms/ios/HelloCordova/Plugins/com.phonegap.plugins.facebookconnect/FacebookConnectPlugin.m"; sourceTree = "<group>"; };
 		43BEA1961906C399005BA4CC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../phonegap-facebook-plugin-master/src/ios/frameworks/FacebookSDK.framework"; sourceTree = "<group>"; };
-		43BEA1991906C3A9005BA4CC /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookConnectPlugin.h; path = "../../../../phonegap-facebook-plugin-master/src/ios/FacebookConnectPlugin.h"; sourceTree = "<group>"; };
-		43BEA19A1906C3A9005BA4CC /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookConnectPlugin.m; path = "../../../../phonegap-facebook-plugin-master/src/ios/FacebookConnectPlugin.m"; sourceTree = "<group>"; };
+		43F2D6EA19ED385C006AACBC /* CDVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLocation.h; path = org.apache.cordova.geolocation/CDVLocation.h; sourceTree = "<group>"; };
+		43F2D6EB19ED385C006AACBC /* CDVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = org.apache.cordova.geolocation/CDVLocation.m; sourceTree = "<group>"; };
+		47E6494C7883434A9523A700 /* CanOpen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanOpen.h; path = com.philmerrell.cordova.canopen/CanOpen.h; sourceTree = "<group>"; };
 		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = org.apache.cordova.statusbar/CDVStatusBar.m; sourceTree = "<group>"; };
+		5CB776A17EB94906B03484BE /* CanOpen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanOpen.m; path = com.philmerrell.cordova.canopen/CanOpen.m; sourceTree = "<group>"; };
 		5FFC6B51D35448DAB122E4C5 /* CDVSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = org.apache.cordova.splashscreen/CDVSplashScreen.m; sourceTree = "<group>"; };
 		646032A83FAA466FA02FB4A5 /* AppAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppAvailability.h; path = com.ohh2ahh.plugins.appavailability/AppAvailability.h; sourceTree = "<group>"; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
@@ -152,15 +156,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4355957F19FFB70400D5E1F5 /* FacebookSDK.framework in Frameworks */,
+				43F2D6EE19ED3A41006AACBC /* CoreLocation.framework in Frameworks */,
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
-				43BEA1971906C399005BA4CC /* FacebookSDK.framework in Frameworks */,
 				D6BFD5C075EA49F483635621 /* Social.framework in Frameworks */,
 				1DE43B2E68DA4525ADAB1652 /* MessageUI.framework in Frameworks */,
-				82DD026B418148F5BC0FF2F1 /* FacebookSDK.framework in Frameworks */,
 				4F76488CBBC946998BF82BC4 /* libsqlite3.dylib in Frameworks */,
 				6EBC97165ADF4668950476B3 /* Accounts.framework in Frameworks */,
 				77074139123346DC97C02F43 /* AdSupport.framework in Frameworks */,
@@ -254,6 +257,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				430EDF2B19F3B9B900D81201 /* FacebookSDK.framework */,
 				43BEA1961906C399005BA4CC /* FacebookSDK.framework */,
 				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
@@ -284,6 +288,8 @@
 				43BEA1981906C39E005BA4CC /* ios */,
 				1AB04BE04B9644B0BF3534EC /* CDVInAppBrowser.m */,
 				26CE31BE14454DE58772186C /* CDVInAppBrowser.h */,
+				43F2D6EA19ED385C006AACBC /* CDVLocation.h */,
+				43F2D6EB19ED385C006AACBC /* CDVLocation.m */,
 				5FFC6B51D35448DAB122E4C5 /* CDVSplashScreen.m */,
 				38207D38E26D4904AC21ECEB /* CDVSplashScreen.h */,
 				8EDE2BE00E134788B28DEACA /* CDVDevice.m */,
@@ -291,13 +297,13 @@
 				437B97991967BF8800BBF68A /* CDVClipboard.m */,
 				437B97A31967C56200BBF68A /* SocialSharing.h */,
 				437B97A41967C56200BBF68A /* SocialSharing.m */,
-				437B979B1967BFAC00BBF68A /* CDVLocation.h */,
-				437B979C1967BFAC00BBF68A /* CDVLocation.m */,
 				AFFD46D1076E409CB3C2A2FB /* CDVDevice.h */,
 				5C7C3801FEB2427E8517DD11 /* CDVStatusBar.m */,
 				E1C3A394122A431FB9B2A768 /* CDVStatusBar.h */,
 				E8E337C3FD5C450EA7E6AF47 /* AppAvailability.m */,
 				646032A83FAA466FA02FB4A5 /* AppAvailability.h */,
+				5CB776A17EB94906B03484BE /* CanOpen.m */,
+				47E6494C7883434A9523A700 /* CanOpen.h */,
 			);
 			name = Plugins;
 			path = Skatespots.com.au/Plugins;
@@ -357,8 +363,8 @@
 		43BEA1981906C39E005BA4CC /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				43BEA1991906C3A9005BA4CC /* FacebookConnectPlugin.h */,
-				43BEA19A1906C3A9005BA4CC /* FacebookConnectPlugin.m */,
+				439EE3B619FFB35200E60476 /* FacebookConnectPlugin.h */,
+				439EE3B719FFB35200E60476 /* FacebookConnectPlugin.m */,
 			);
 			name = ios;
 			sourceTree = "<group>";
@@ -400,7 +406,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 500;
+				LastUpgradeCheck = 600;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = H5T9V2R5XW;
@@ -504,17 +510,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				43BEA19B1906C3A9005BA4CC /* FacebookConnectPlugin.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				43F2D6EC19ED385C006AACBC /* CDVLocation.m in Sources */,
 				3C7BDC1E948641BDA2390B81 /* CDVInAppBrowser.m in Sources */,
 				437B979A1967BF8800BBF68A /* CDVClipboard.m in Sources */,
 				8A5ACECBD17D435BBA433D22 /* CDVSplashScreen.m in Sources */,
 				3BF8C09187514A6E992C7E4A /* CDVDevice.m in Sources */,
-				437B979D1967BFAC00BBF68A /* CDVLocation.m in Sources */,
 				91FE39763BB64B69B8687E83 /* CDVStatusBar.m in Sources */,
+				439EE3B819FFB35200E60476 /* FacebookConnectPlugin.m in Sources */,
 				437B97A51967C56200BBF68A /* SocialSharing.m in Sources */,
 				4055F5CB7D6B44ECA3DEFE53 /* AppAvailability.m in Sources */,
+				57B1A4DE944447A88F1C50D7 /* CanOpen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,14 +575,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Jones (PFG4LW6DP4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/src/ios/frameworks",
-					"\"Skatespots.com.au/Plugins/com.phonegap.plugins.facebookconnect\"",
+					Skatespots.com.au/Plugins/com.phonegap.plugins.facebookconnect,
+					/Users/dylanjones/Documents/FacebookSDK,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -585,7 +593,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Skatespots.com.au/Skatespots.com.au-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -601,9 +609,9 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv6 armv7";
 			};
 			name = Debug;
 		};
@@ -611,14 +619,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dylan Jones (PFG4LW6DP4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/dylanjones/Desktop/Skatespots.com.au/phonegap-facebook-plugin-master/src/ios/frameworks",
-					"\"Skatespots.com.au/Plugins/com.phonegap.plugins.facebookconnect\"",
+					Skatespots.com.au/Plugins/com.phonegap.plugins.facebookconnect,
+					/Users/dylanjones/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Skatespots.com.au/Skatespots.com.au-Prefix.pch";
@@ -626,7 +635,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Skatespots.com.au/Skatespots.com.au-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -642,9 +651,10 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Skatespots.com.au;
-				PROVISIONING_PROFILE = "53A67A5F-4D41-4693-A9DA-7FAB6CD88A42";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = "armv6 armv7";
+				"VALID_ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 			};
 			name = Release;
 		};
@@ -658,7 +668,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dylan Jones (H5T9V2R5XW)";
+				ENABLE_NS_ASSERTIONS = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -672,7 +683,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -704,7 +715,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dylan Jones (H5T9V2R5XW)";
+				ENABLE_NS_ASSERTIONS = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -718,7 +730,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,

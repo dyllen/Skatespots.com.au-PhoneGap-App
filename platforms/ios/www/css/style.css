@@ -497,6 +497,45 @@ border-top: 1px solid #e7e7e7;
   margin-top: 50px;
 }
 
+.large-map-preview {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.large-map-preview .item {
+  padding-left: 25px;
+}
+
+.large-map-preview .item:active, .large-map-preview .item:hover {
+  background: white;
+}
+
+.large-map-preview .item span.address-group {
+  float: left;
+  max-width: 180px;
+}
+
+.bar .button.ion-ios7-settings-strong::before {
+  font-size: 22px;
+}
+
+.large-map-preview span.directions {
+  float: right;
+color: #4a87ee;
+font-size: 12px;
+text-align: center;
+border-left: 1px solid lightgrey;
+padding-left: 15px;
+}
+
+.large-map-preview span.directions i {
+font-size: 26px;
+}
+
+
+
 .post_head {
 background: white;
 padding: 20px 10px 10px 10px;

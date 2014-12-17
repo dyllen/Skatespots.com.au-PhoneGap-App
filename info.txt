@@ -1,0 +1,45 @@
+Node version: v0.10.26
+
+Cordova version: 4.0.0
+
+Config.xml file: 
+
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.skatespotscomau.skatespots" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Skatespots.com.au</name>
+    <description>
+        The Skatespots.com.au iPhone App
+    </description>
+    <author email="dylan@skatespots.com.au" href="http://www.skatespots.com.au">
+        Dylan Jones
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#2398C9" />
+    <feature name="StatusBar">
+      <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+    <feature name="org.apache.cordova.facebook.Connect">
+        <param name="ios-package" value="FacebookConnectPlugin" />
+    </feature>
+    <feature name="org.apache.cordova.facebook.Connect">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+    </feature>
+</widget>
+
+
+Plugins: 
+
+com.ohh2ahh.plugins.appavailability,com.philmerrell.cordova.canopen,com.phonegap.plugins.facebookconnect,com.verso.cordova.clipboard,nl.x-services.plugins.socialsharing,org.apache.cordova.console,org.apache.cordova.device,org.apache.cordova.geolocation,org.apache.cordova.inappbrowser,org.apache.cordova.splashscreen,org.apache.cordova.statusbar
+
+Error retrieving Android platform information: Error: android: Command failed with exit code ENOENT
+
+iOS platform:
+
+Xcode 6.0.1
+Build version 6A317
+

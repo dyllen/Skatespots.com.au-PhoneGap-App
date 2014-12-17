@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.skatespotscomau.skatespots" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Skatespots.com.au</name>
     <description>
         The Skatespots.com.au iPhone App
@@ -17,10 +17,13 @@
     <feature name="StatusBar">
       <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
+
     <feature name="org.apache.cordova.facebook.Connect">
-        <param name="ios-package" value="FacebookConnectPlugin" />
+        <param name="ios-package" value="org.apache.cordova.facebook.ConnectPlugin" />
     </feature>
+
     <feature name="org.apache.cordova.facebook.Connect">
         <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
     </feature>
+
 </widget>
